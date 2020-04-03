@@ -1,0 +1,39 @@
+@import './variables';
+
+.horizontal-navbar {
+  height: 80px;
+  background-color: $light-black;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5vw;
+  width: 100%;
+  a {
+    color: $light-grey;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  ul {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+  }
+}
+
+.scroll-navbar {
+  transition: all 0.5s ease-in-out;
+  background-color: white;
+  position: fixed;
+  a {
+    color: $light-black;
+  }
+  img {
+    filter: invert(0%);
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      filter: invert(100%);
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}

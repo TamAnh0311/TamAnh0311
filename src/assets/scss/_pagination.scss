@@ -1,0 +1,17 @@
+.pagination-block {
+  display: flex;
+  justify-content: flex-end;
+  margin-top:20px;
+  .pagination {
+    list-style-type: none;
+  }
+  
+  .pagination-item {
+    display: inline-block;
+  }
+  
+  .pagination-item__active {
+    background-color: #4AAE9B;
+    color: #ffffff;
+  }
+}
