@@ -31,7 +31,7 @@
         <pagination
           :total-pages="totalPages"
           :total="totalProjects"
-          :per-page="6"
+          :per-page="perPage"
           :current-page="currentPage"
           @pagechanged="onPageChange"
         />
@@ -47,8 +47,9 @@
 </template>
 
 <script>
+// import router from '@/router/';
 import axios from 'axios';
-import Pagination from '../pagination.vue';
+import Pagination from '@/components/pagination.vue';
 
 export default {
   name: 'Portfolio',
@@ -60,23 +61,25 @@ export default {
       errors: [],
       repos: [],
       currentPage: 1,
+      perPage: 6,
     };
   },
   computed: {
     repositories() {
-      return this.repos;
+      return this.paginate(this.repos);
     },
     totalPages() {
-      return Math.ceil(this.repositories.length / 6);
+      return Math.ceil(this.repos.length / this.perPage);
     },
     totalProjects() {
-      return this.repositories.length;
+      return this.repos.length;
     },
   },
   methods: {
     toProject(project) {
-      console.log(project);
+      this.$emit('toProject', project);
     },
+
     /* eslint-disable global-require */
     changeImgGreen(index) {
       const item = document
@@ -93,11 +96,12 @@ export default {
       item[0].src = url;
     },
     /* eslint-enable global-require */
+
     changeView(index) {
       switch (index) {
         case 1:
           this.repos = this.repos.sort((a, b) => a.name - b.name);
-          console.log(this.repositories);
+          // console.log(this.repositories);
           break;
         case 2:
           /* eslint-disable max-len */
@@ -105,18 +109,26 @@ export default {
             (a, b) => new Date(a.created_at).getTime()
               - new Date(b.created_at).getTime(),
           );
-          console.log(this.repositories);
-          /* eslint-enable max-len */
+          // console.log(this.repositories);
           break;
         default:
           this.repos = this.repos.sort((a, b) => a.name - b.name);
       }
     },
+    /* eslint-enable max-len */
+
     onPageChange(page) {
       this.currentPage = page;
     },
+    paginate(posts) {
+      const page = this.currentPage;
+      const { perPage } = this;
+      const from = (page * perPage) - perPage;
+      const to = (page * perPage);
+      return posts.slice(from, to);
+    },
   },
-  mounted() {
+  created() {
     axios
       .get('https://api.github.com/users/tamanh0311/repos')
       .then((response) => {

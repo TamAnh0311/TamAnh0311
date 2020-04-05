@@ -1,102 +1,72 @@
 <template>
   <div>
-    <VerticalNavbar v-if="!isMobile"/>
+
+    <VerticalNavbar
+      v-if="!isMobile"
+      @showFollow="openFollow"/>
+
     <HorizontalNavbar v-else/>
+
     <div
       id="content-container"
-      v-bind:class="{ 'navbar-active': (isNavbarActive && isMobile === false)}"
-    >
-      <div id="home">
-        <div class="vertical-align home-content">
-          <h1>Hello! This is Anh Vu</h1>
-          <h2>Front-End Developer, specializing in VueJS, HTML, CSS, and Templates Design</h2>
-        </div>
-        <div class="expand-sector">
-          <span class="material-icons" @click="goDown">expand_more</span>
-        </div>
-      </div>
-      <div id="about">
-        <div class="about-content page-padding">
-        <div class="header">
-          <h2 class="title">About me</h2>
-        </div>
-          <div class="row">
-            <div class="col-md-8 col-lg-8 col-xl-8">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-                Phasellus iaculis sagittis turpis, sit amet pretium augue.
-                Nunc eu dolor eget ligula commodo facilisis.
-                Curabitur vel nisi nec libero suscipit imperdiet.
-                Donec tincidunt, lectus a mattis fermentum,
-                ante mi pulvinar velit,
-                eu ultricies nisl odio gravida elit.
-                Nunc convallis euismod dui.
-                Aliquam porta nulla porttitor varius euismod.
-                Phasellus vitae cursus eros. Nunc sed dui turpis.
-                Mauris rhoncus turpis tortor, sed hendrerit elit sodales vel.
-              </p>
-            </div>
-            <div class="col-md-4 col-lg-4 col-xl-4">
-              <img
-                class="img-fluid"
-                src="@/assets/images/avatar.jpg"
-              />
-            </div>
-          </div>
-          <h2 class="title">My skill set</h2>
-          <div class="skill-set">
-            <div class="skill-set__item">
-              <h4>Javascript</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.</p>
-            </div>
-            <div class="skill-set__item">
-              <h4>JQuery</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.</p>
-            </div>
-            <div class="skill-set__item">
-              <h4>SCSS</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.</p>
-            </div>
-            <div class="skill-set__item">
-              <h4>Template Design</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Portfolio />
+      v-bind:class="{ 'navbar-active': (isNavbarActive && isMobile === false)}">
+
+      <HomeBlock @expand="goDown"/>
+
+      <About />
+
+      <Portfolio
+      @toProject="toProject"/>
+
       <Contact />
+
       <footer class="footer vertical-align">
-      <p>© 2020 Tamanh Vu. All rights reserved.</p>
-      <ul class="social">
-        <li class="icon"><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-        <li class="icon"><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-        <li class="icon"><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
-      </ul>
-    </footer>
+        <p>© 2020 Tamanh Vu. All rights reserved.</p>
+        <Follow />
+      </footer>
+
+      <transition name="fade" mode="out-in">
+        <FollowOverlay
+        v-if="showFollow"
+        @closeOverlay="showFollow = !showFollow"/>
+      </transition>
+
+      <transition name="slide-fade" mode="out-in">
+        <ProjectDetail
+        v-if="showDetail"
+        @project="ProjectDetail"/>
+      </transition>
+
     </div>
   </div>
 </template>
 
 <script>
-import VerticalNavbar from '@/components/vertical-navbar.vue';
-import HorizontalNavbar from '@/components/horizontal-navbar.vue';
-import Portfolio from '@/components/content-block/portfolio.vue';
-import Contact from '@/components/content-block/contact.vue';
-import store from '../store';
+import store from '@/store';
+import constant from '@/constant';
 
 export default {
   name: 'Home',
   components: {
-    VerticalNavbar,
-    HorizontalNavbar,
-    Portfolio,
-    Contact,
+    VerticalNavbar: () => import('@/components/vertical-navbar.vue'),
+    HorizontalNavbar: () => import('@/components/horizontal-navbar.vue'),
+
+    HomeBlock: () => import('./content-block/home-block.vue'),
+    About: () => import('./content-block/about.vue'),
+    Portfolio: () => import('./content-block/portfolio.vue'),
+    Contact: () => import('./content-block/contact.vue'),
+
+    Follow: () => import('@/components/follow.vue'),
+    FollowOverlay: () => import('./follow-overlay.vue'),
+
+    ProjectDetail: () => import('./project-detail.vue'),
+  },
+  data() {
+    return {
+      showFollow: false,
+      showDetail: true,
+      project: {},
+    };
   },
   computed: {
     isNavbarActive() {
@@ -105,10 +75,24 @@ export default {
     isMobile() {
       return store.state.isMobile;
     },
+    followList() {
+      return constant.followConst;
+    },
+    ProjectDetail() {
+      return this.project;
+    },
   },
   methods: {
     goDown() {
       document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+    },
+    openFollow() {
+      this.showFollow = !this.showFollow;
+    },
+    toProject(project) {
+      this.showDetail = !this.showDetail;
+      this.project = project;
+      console.log('this', this.project);
     },
   },
 };

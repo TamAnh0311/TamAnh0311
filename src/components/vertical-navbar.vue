@@ -80,7 +80,7 @@ export default {
       );
     },
     openFollow() {
-      console.log('Open Follow');
+      this.$emit('showFollow');
     },
   },
   // created() {

@@ -1,0 +1,27 @@
+.social {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: none;
+  li {
+    width: 30px;
+    height: 30px;
+    padding:3px;
+    margin: 10px;
+    border: 2px solid $light-green;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    a {
+      text-decoration: none;
+      color: $light-green;
+    }
+    &:hover {
+      transition: all .3s ease-in-out;
+      background-color: $light-green;
+      a {
+        color: black;
+      }
+    }
+  }
+}

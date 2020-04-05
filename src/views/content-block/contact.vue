@@ -2,11 +2,10 @@
   <div id="contact">
     <div class="contact-content page-padding">
       <div class="header">
-        <h2 class="title">Contact</h2>
+        <h2 class="title">Get in Touch with Me</h2>
       </div>
-      <div>
-        <h5 class="title">Get in Touch with Me</h5>
-        <p class="title lh-5">
+        <div class="contact-block">
+        <p class="title">
           Please feel free to contact me if you need any further information.
         </p>
         <div class="contact-links">
@@ -35,10 +34,11 @@
             </a>
           </div>
         </div>
+        </div>
+        <div class="email-block">
         <p class="title lh-5">
           Or send me direct message
         </p>
-        <div class="email-block">
         <div class="row">
           <div class="col-sm-6">
             <div class="email-block__item">
@@ -79,24 +79,23 @@
           <div class="btn-block">
             <div>
               <input
+              type="reset"
+              value="Clear Message"
+              name="reset"
+              class="btn btn-clear"
+              @click="clearTextbox"/>
+            </div>
+            <div>
+              <input
               type="submit"
               value="Send Message"
               name="submit"
               class="btn btn-submit"
               @click="sendMessage"/>
             </div>
-            <div>
-              <input
-              type="reset"
-              value="Clear Message"
-              name="reset"
-              class="btn btn-submit"
-              @click="clearTextbox"/>
-            </div>
           </div>
         </div>
         </div>
-      </div>
     </div>
   </div>
 </template>

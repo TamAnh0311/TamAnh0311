@@ -1,6 +1,6 @@
 .pagination-block {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top:20px;
   .pagination {
     list-style-type: none;
@@ -8,10 +8,21 @@
   
   .pagination-item {
     display: inline-block;
+    button {
+      margin: 0px 5px 0px 5px;
+      font-size: calc(8px + 1vw);
+      background-color: transparent;
+      border-color: white;
+      color: white;
+      &:disabled {
+        border-color: $darker-grey;
+        color: $darker-grey;
+      }
+    }
   }
   
   .pagination-item__active {
-    background-color: #4AAE9B;
-    color: #ffffff;
+    border-color: $light-green!important;
+    color: $light-green!important;
   }
 }

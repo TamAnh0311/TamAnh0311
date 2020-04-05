@@ -58,10 +58,6 @@ export default {
   name: 'pagination',
   template: '#pagination',
   props: {
-    // projects: {
-    //   type: Array,
-    //   required: true,
-    // },
     maxVisibleButtons: {
       type: Number,
       required: false,
@@ -105,13 +101,12 @@ export default {
     pages() {
       const range = [];
 
-      for (let i = this.startPage; i <= this.endPage; i += 1) {
+      for (let i = 1; i <= this.endPage; i += 1) {
         range.push({
           name: i,
           isDisabled: i === this.currentPage,
         });
       }
-
       return range;
     },
     isInFirstPage() {

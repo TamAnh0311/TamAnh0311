@@ -7,6 +7,10 @@
 @import './loading-spinner';
 @import './transitions';
 @import './pagination';
+@import './_follow-page';
+
+@import './view-component/contact';
+@import './view-component/portfolio';
 
 body {
   margin: 0;
