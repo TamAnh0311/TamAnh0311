@@ -11,5 +11,11 @@
 <script >
 export default {
   name: 'loading-spinner',
+  mounted() {
+    document.documentElement.style.overflow = 'hidden';
+  },
+  destroyed() {
+    document.documentElement.style.overflow = 'auto';
+  },
 };
 </script>

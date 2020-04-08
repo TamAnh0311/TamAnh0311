@@ -23,11 +23,13 @@
           color: white;
           text-decoration: none;
           margin: 10px;
+          word-break: break-word;
         }
         &:hover {
-          border: 2px solid;
           border-radius: 5px;
-          border-color: $light-green;
+          -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
           transition: all .3s ease-in-out;
         }
       }

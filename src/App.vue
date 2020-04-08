@@ -1,24 +1,26 @@
 <template>
   <div id="app">
+
+    <transition name="fade" mode="in-out">
+      <LoadingSpinner v-if="isLoading" />
+    </transition>
+
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>
+
   </div>
 </template>
 
 <script>
-// import LoadingSpinner from '@/components/loading-spinner.vue';
+import LoadingSpinner from '@/components/loading-spinner.vue';
+
 import store from './store';
 
 export default {
   name: 'App',
   components: {
-    // LoadingSpinner,
-  },
-  data() {
-    return {
-      // isLoading: false,
-    };
+    LoadingSpinner,
   },
   computed: {
     isLoading() {
@@ -28,10 +30,9 @@ export default {
       return store.state.isMobile;
     },
   },
-  mounted() {
+  created() {
     if (/Mobi/i.test(navigator.userAgent)) {
-      store.commit('isMobie');
-      console.log(store.state.isMobile);
+      store.commit('isMobile');
     }
   },
 };

@@ -1,8 +1,15 @@
 <template>
   <div id="contact">
     <div class="contact-content page-padding">
-      <div class="header">
-        <h2 class="title">Get in Touch with Me</h2>
+      <div class="header row">
+        <div class="col-md-11 col-lg-11 col-xl-11">
+          <h2 class="title">Get in Touch with Me</h2>
+        </div>
+        <div class="col-md-1 col-lg-1 col-xl-1">
+          <UpDownBtn
+          :isEnd="true"
+          :upBlock="'portfolio'" />
+        </div>
       </div>
         <div class="contact-block">
         <p class="title">
@@ -101,8 +108,13 @@
 </template>
 
 <script>
+import UpDownBtn from '@/components/up-down.vue';
+
 export default {
   name: 'Contact',
+  components: {
+    UpDownBtn,
+  },
   data() {
     return {
       directMessage: {

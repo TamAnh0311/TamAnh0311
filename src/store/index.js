@@ -5,19 +5,19 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isLoading: false,
+    isLoading: true,
     isActive: false,
     isMobile: false,
   },
   mutations: {
-    checkLoading(state) {
-      state.isLoading = !state.isLoading;
+    checkLoading(state, n) {
+      state.isLoading = n;
     },
     checkActive(state) {
       state.isActive = !state.isActive;
     },
     isMobile(state) {
-      state.isMobile = !state.isActive;
+      state.isMobile = true;
     },
   },
   actions: {

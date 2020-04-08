@@ -9,32 +9,22 @@
 
     <div
       id="content-container"
-      v-bind:class="{ 'navbar-active': (isNavbarActive && isMobile === false)}">
+      v-bind:class="{ 'navbar-active': (isNavbarActive && !isMobile), 'mobile-view': isMobile}">
 
       <HomeBlock @expand="goDown"/>
 
       <About />
 
-      <Portfolio
-      @toProject="toProject"/>
+      <Portfolio />
 
       <Contact />
 
-      <footer class="footer vertical-align">
-        <p>© 2020 Tamanh Vu. All rights reserved.</p>
-        <Follow />
-      </footer>
+      <Footer />
 
       <transition name="fade" mode="out-in">
         <FollowOverlay
         v-if="showFollow"
         @closeOverlay="showFollow = !showFollow"/>
-      </transition>
-
-      <transition name="slide-fade" mode="out-in">
-        <ProjectDetail
-        v-if="showDetail"
-        @project="ProjectDetail"/>
       </transition>
 
     </div>
@@ -44,28 +34,26 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
+import HomeBlock from './content-block/home-block.vue';
 
 export default {
   name: 'Home',
   components: {
-    VerticalNavbar: () => import('@/components/vertical-navbar.vue'),
-    HorizontalNavbar: () => import('@/components/horizontal-navbar.vue'),
+    VerticalNavbar: () => import('@/components/navbar/vertical-navbar.vue'),
+    HorizontalNavbar: () => import('@/components/navbar/horizontal-navbar.vue'),
 
-    HomeBlock: () => import('./content-block/home-block.vue'),
+    HomeBlock,
     About: () => import('./content-block/about.vue'),
     Portfolio: () => import('./content-block/portfolio.vue'),
     Contact: () => import('./content-block/contact.vue'),
+    Footer: () => import('./content-block/footer.vue'),
 
-    Follow: () => import('@/components/follow.vue'),
     FollowOverlay: () => import('./follow-overlay.vue'),
 
-    ProjectDetail: () => import('./project-detail.vue'),
   },
   data() {
     return {
       showFollow: false,
-      showDetail: true,
-      project: {},
     };
   },
   computed: {
@@ -78,9 +66,6 @@ export default {
     followList() {
       return constant.followConst;
     },
-    ProjectDetail() {
-      return this.project;
-    },
   },
   methods: {
     goDown() {
@@ -89,11 +74,12 @@ export default {
     openFollow() {
       this.showFollow = !this.showFollow;
     },
-    toProject(project) {
-      this.showDetail = !this.showDetail;
-      this.project = project;
-      console.log('this', this.project);
-    },
+  },
+  mounted() {
+    store.commit('checkLoading', false);
+  },
+  destroyed() {
+    store.commit('checkLoading', true);
   },
 };
 </script>

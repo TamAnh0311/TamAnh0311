@@ -1,0 +1,14 @@
+#about {
+  height: auto;
+  margin: 20px;
+  background-color: rgba($color: black, $alpha: 0.7);
+  .about-content {
+    h4 {
+      text-align: justify;
+      word-break: break-word;
+    }
+    .skill-set {
+      display: flex;
+    }
+  }
+}

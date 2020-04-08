@@ -1,10 +1,10 @@
 @import './variables';
 
 .loading-spinner {
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
-  background-color: black;
+  background-color: rgba($color: black, $alpha: 0.9);
   z-index: 1;
 }
 

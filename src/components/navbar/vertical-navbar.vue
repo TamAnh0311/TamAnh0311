@@ -3,7 +3,7 @@
     <img
       class="logo hover-invert"
       @click="activeNavbar"
-      src="../assets/images/logo.png"
+      src="../../assets/images/logo.png"
       height="60"
       width="110"
       alt
@@ -13,7 +13,7 @@
         class="vertical-align"
         v-for="(item, index) in navList"
         :key="index"
-        v-bind:class="{ 'pos-current': (!isActive && current === index)}"
+        v-bind:class="{ 'pos-current': current === index}"
         @click="goIntoView(item.part)"
       >
         <span class="material-icons">{{item.icon}}</span>
@@ -22,6 +22,7 @@
       </li>
       <li
       class="vertical-align"
+      v-bind:class="{ 'pos-current': current === 4}"
       @click="openFollow">
         <span class="material-icons">favorite</span>
         <span class="item-name">Follow</span>
@@ -31,21 +32,17 @@
   </div>
 </template>
 <script>
-import store from '../store';
-import constant from '../constant';
+import store from '@/store';
+import constant from '@/constant';
 
 export default {
   name: 'VerticalNavbar',
   data() {
     return {
-      posCurrent: 'home',
-      current: 'home',
+      current: 0,
     };
   },
   computed: {
-    // current() {
-    //   return this.posCurrent.charAt(0).toUpperCase() + this.posCurrent.slice(1);
-    // },
     navList() {
       return constant.navListArray;
     },
@@ -60,39 +57,23 @@ export default {
     activeNavbar() {
       store.commit('checkActive');
     },
-    isInViewport(el) {
-      const scroll = window.scrollY || window.pageYOffset;
-      const boundsTop = el.getBoundingClientRect().top + scroll;
-
-      const viewport = {
-        top: scroll,
-        bottom: scroll + window.innerHeight,
-      };
-
-      const bounds = {
-        top: boundsTop,
-        bottom: boundsTop + el.clientHeight,
-      };
-
-      return (
-        (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom)
-        || (bounds.top <= viewport.bottom && bounds.top >= viewport.top)
-      );
-    },
     openFollow() {
       this.$emit('showFollow');
+      this.current = 4;
     },
   },
-  // created() {
-  //   window.addEventListener('scroll', () => {
-  //     const all = document.getElementById('content-container').querySelectorAll('div');
-  //     const keysArray = Object.keys(all);
-  //     keysArray.forEach((el) => {
-  //       console.log(el);
-  //       const isIn = this.isInViewport(el);
-  //       if (isIn) console.log(keysArray.indexOf(el));
-  //     });
-  //   });
-  // },
+  mounted() {
+    window.addEventListener('scroll', () => {
+      const offset = window.pageYOffset;
+      const about = document.getElementById('about').offsetTop;
+      const portfolio = document.getElementById('portfolio').offsetTop;
+      const contact = document.getElementById('contact').offsetTop;
+
+      if (offset < about) this.current = 0;
+      if (offset >= about) this.current = 1;
+      if (offset >= portfolio) this.current = 2;
+      if (offset >= contact) this.current = 3;
+    });
+  },
 };
 </script>

@@ -1,8 +1,15 @@
 <template>
   <div id="about">
     <div class="about-content page-padding">
-      <div class="header">
-        <h2 class="title">About me</h2>
+      <div class="header row">
+        <div class="col-md-11 col-lg-11 col-xl-11">
+          <h2 class="title">About me</h2>
+        </div>
+        <div class="col-md-1 col-lg-1 col-xl-1">
+          <UpDownBtn
+          :upBlock="'home'"
+          :downBlock="'portfolio'" />
+        </div>
       </div>
       <div class="row">
         <div class="col-md-8 col-lg-8 col-xl-8">
@@ -62,7 +69,12 @@
 </template>
 
 <script>
+import UpDownBtn from '@/components/up-down.vue';
+
 export default {
   name: 'About',
+  components: {
+    UpDownBtn,
+  },
 };
 </script>

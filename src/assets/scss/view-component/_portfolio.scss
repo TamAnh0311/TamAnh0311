@@ -4,56 +4,64 @@
   background-color: rgba($color: black, $alpha: 0.7);
   position: relative;
   .portfolio-content {
-    .filter {
+    .header{
+      margin-bottom: 0;
+    }
+    .search-box {
       display: flex;
       justify-content: flex-end;
-      list-style-type: none;
-      margin: 0px;
-      li {
-        margin: 0px 5px 0px 5px;
-        border: 2px solid white;
-        padding: 5px 10px 5px 10px;
-        font-family: 'Roboto', sans-serif;
+      input {
+        border: 0;
+        font-size: calc(8px + 1vw);
+        color: white;
+        background: transparent;
+        max-width: 250px;
+      }
+      span{
+        font-size: calc(22px + 1vw);
         cursor: pointer;
-        transition: all .3s ease-in-out;
+        transition: all .1s ease-in-out;
         &:hover {
           color: $light-green;
-          border-color: $light-green;
-          transition: all .3s ease-in-out;
-        }
-        &.filter__item--active {
-          color: $light-green;
-          border-color: $light-green;
-          transition: all .3s ease-in-out;
+          transition: all .1s ease-in-out;
         }
       }
     }
     .projects {
       display: flex;
       flex-wrap: wrap;
+      min-height: 500px;
+      margin: 30px 0px 30px 0px;
       .projects__item {
-        flex:1 0 33%;
-        height: 250px;
-        transform: translate3d(0px, 0px, 0px);
-        opacity: 1;
-        transition: all .3s ease-in-out;
+        margin: 10px;
+        flex: 0 0 48%;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: rgba($color: $light-grey, $alpha: 0.1);
+        border-radius: 5px;
         cursor: pointer;
-        &.vertical-align {
-          flex-direction: column;
-          justify-content: space-evenly;
-        }
         &:hover {
-          border: 5px solid;
-          border-radius: 5px;
-          border-color: $light-green;
+          -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
           transition: all .3s ease-in-out;
           color: $light-green;
-          img {
-            transform: scale3d(1.2, 1.2, 1.2);
-            transition: all .3s ease-in-out;
+        }
+        .box-img {
+          flex: 1;
+          margin: 30px;
+        }
+        .project-infor {
+          flex: 3;
+          th {
+            text-align: left;
+            font-size: calc(2px + 1vw);
           }
-        } 
+        }
       }
+    }
+    .error-banner {
+      min-height: 500px;
     }
   }
 }

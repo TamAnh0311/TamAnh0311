@@ -6,16 +6,6 @@ import NotFound from '@/views/404.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: Home,
-  // },
-  // {
-  //   path: '*',
-  //   name: '404',
-  //   component: () => import('@/views/404.vue'),
-  // },
   {
     path: '/',
     name: 'home',

@@ -5,28 +5,65 @@
         <div class="col-md-3 col-lg-3 col-xl-3">
           <h2 class="title">My projects</h2>
         </div>
-        <div class="col-md-9 col-lg-9 col-xl-9">
-          <ul class="filter">
-            <li @click="changeView(1)">Name</li>
-            <li @click="changeView(2)">Date</li>
-            <li>Label</li>
-          </ul>
+        <div class="col-md-8 col-lg-8 col-xl-8 search-box">
+          <input
+            v-model="searchKey"
+            placeholder="Search by language"
+            @keyup.enter="searchByLang"
+            type="text"
+          />
+          <span class="material-icons vertical-align" @click="searchByLang">search</span>
+        </div>
+        <div class="col-md-1 col-lg-1 col-xl-1 ">
+          <UpDownBtn
+          :upBlock="'about'"
+          :downBlock="'contact'" />
         </div>
       </div>
-      <div v-if="repos.length > 0">
-        <div class="projects">
-        <div
-          v-for="(item, index) in repositories"
-          :key="index"
-          class="projects__item vertical-align"
-          @click="toProject(item)"
-          @mouseover="changeImgGreen(index)"
-          @mouseleave="changeImg(index)"
-        >
-          <img class="img-fluid" src="../../assets/images/box.png" alt height="100" width="150" />
-          <h4>{{item.name}}</h4>
-        </div>
-        </div>
+      <div
+      v-if="(repos.length > 0 &&
+        repositories.length > 0 &&
+        errors.length === 0)">
+        <transition-group name="slide-fade"  class="projects" tag="div">
+          <div
+            v-for="(item, index) in repositories"
+            :key="index"
+            class="projects__item vertical-align"
+            @click="toProject(item)"
+            @mouseover="changeImgGreen(index)"
+            @mouseleave="changeImg(index)"
+          >
+            <img
+              class="box-img img-fluid"
+              src="../../assets/images/box.png"
+              alt
+              height="100"
+              width="150"
+            />
+            <table class="project-infor">
+              <tr>
+                <th>Name:</th>
+                <th>{{item.name}}</th>
+              </tr>
+              <tr>
+                <th>Language:</th>
+                <th>{{item.language}}</th>
+              </tr>
+              <tr>
+                <th>Forks Count:</th>
+                <th>{{item.forks_count}}</th>
+              </tr>
+              <tr>
+                <th>Owner:</th>
+                <th>{{item.owner.login}}</th>
+              </tr>
+              <tr>
+                <th>Created at:</th>
+                <th>{{item.created_at | formatDate}}</th>
+              </tr>
+            </table>
+          </div>
+        </transition-group>
 
         <pagination
           :total-pages="totalPages"
@@ -35,37 +72,52 @@
           :current-page="currentPage"
           @pagechanged="onPageChange"
         />
+      </div>
 
-      </div>
-      <div v-else class="error-banner">
-        <h2>Error occurred</h2>
-        <h2>{{errors}}</h2>
-        <h2>Please try again later</h2>
-      </div>
+      <transition name="fade" mode="in-out">
+      <div v-if="errors.length > 0" class="error-banner vertical-align">
+          <h2>Oops! Error occurred</h2>
+          <h2 v-for="(item, index) in errors" :key="index">{{item}}</h2>
+          <h2>Please try again later</h2>
+        </div>
+      </transition>
+      <transition name="fade" mode="in-out">
+        <div
+        v-if="(repositories.length === 0 && repos.length > 0)"
+        class="error-banner vertical-align">
+          <img class="img-fluid" src="../../assets/images/not-found.png" alt="">
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
-// import router from '@/router/';
+import moment from 'moment';
 import axios from 'axios';
 import Pagination from '@/components/pagination.vue';
+import UpDownBtn from '@/components/up-down.vue';
 
 export default {
   name: 'Portfolio',
   components: {
     Pagination,
+    UpDownBtn,
   },
   data() {
     return {
       errors: [],
       repos: [],
       currentPage: 1,
-      perPage: 6,
+      perPage: 4,
+      searchKey: '',
     };
   },
   computed: {
     repositories() {
+      if (this.searchKey) {
+        return this.paginate(this.searchByLang());
+      }
       return this.paginate(this.repos);
     },
     totalPages() {
@@ -77,7 +129,7 @@ export default {
   },
   methods: {
     toProject(project) {
-      this.$emit('toProject', project);
+      window.location.href = project.html_url;
     },
 
     /* eslint-disable global-require */
@@ -97,35 +149,27 @@ export default {
     },
     /* eslint-enable global-require */
 
-    changeView(index) {
-      switch (index) {
-        case 1:
-          this.repos = this.repos.sort((a, b) => a.name - b.name);
-          // console.log(this.repositories);
-          break;
-        case 2:
-          /* eslint-disable max-len */
-          this.repos = this.repos.sort(
-            (a, b) => new Date(a.created_at).getTime()
-              - new Date(b.created_at).getTime(),
-          );
-          // console.log(this.repositories);
-          break;
-        default:
-          this.repos = this.repos.sort((a, b) => a.name - b.name);
-      }
+    searchByLang() {
+      const filterArray = this.repos.filter((item) => {
+        if (item.language) {
+          return item.language
+            .toLocaleLowerCase()
+            .includes(this.searchKey.toLocaleLowerCase());
+        }
+        return null;
+      });
+      return filterArray;
     },
-    /* eslint-enable max-len */
 
     onPageChange(page) {
       this.currentPage = page;
     },
-    paginate(posts) {
+    paginate(projects) {
       const page = this.currentPage;
       const { perPage } = this;
-      const from = (page * perPage) - perPage;
-      const to = (page * perPage);
-      return posts.slice(from, to);
+      const from = page * perPage - perPage;
+      const to = page * perPage;
+      return projects.slice(from, to);
     },
   },
   created() {
@@ -138,8 +182,13 @@ export default {
         this.errors.push(e);
       });
   },
+  filters: {
+    formatDate(value) {
+      if (value) {
+        return moment(String(value)).format('MM/DD/YYYY');
+      }
+      return null;
+    },
+  },
 };
 </script>
-
-<style>
-</style>

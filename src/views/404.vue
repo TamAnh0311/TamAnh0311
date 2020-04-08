@@ -17,7 +17,10 @@ import store from '../store';
 
 export default {
   mounted() {
-    store.commit('checkLoading');
+    store.commit('checkLoading', false);
+  },
+  destroyed() {
+    store.commit('checkLoading', true);
   },
 };
 </script>

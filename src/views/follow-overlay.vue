@@ -1,7 +1,6 @@
 <template>
-  <div class="follow-overlay">
+  <div id="follow-overlay" class="follow-overlay vertical-align">
     <span class="close" @click="$emit('closeOverlay')">&times;</span>
-    <h1>Follow me on</h1>
     <Follow />
   </div>
 </template>
@@ -13,6 +12,12 @@ export default {
   name: 'FollowOverlay',
   components: {
     Follow,
+  },
+  mounted() {
+    document.documentElement.style.overflow = 'hidden';
+  },
+  destroyed() {
+    document.documentElement.style.overflow = 'auto';
   },
 };
 </script>
