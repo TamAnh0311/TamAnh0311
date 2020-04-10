@@ -31,7 +31,7 @@ export default {
     },
   },
   created() {
-    if (/Mobi/i.test(navigator.userAgent)) {
+    if ((/Mobi/i.test(navigator.userAgent)) || window.innerWidth < 414) {
       store.commit('isMobile');
     }
   },

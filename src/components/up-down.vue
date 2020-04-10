@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import mixin from '@/mixins';
+
 export default {
   name: 'UpDownBtn',
   props: {
@@ -28,7 +30,7 @@ export default {
   },
   methods: {
     goTo(block) {
-      document.getElementById(block).scrollIntoView({ behavior: 'smooth' });
+      mixin.methods.scrollTo(block);
     },
   },
 };

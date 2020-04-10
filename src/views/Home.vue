@@ -2,10 +2,11 @@
   <div>
 
     <VerticalNavbar
-      v-if="!isMobile"
+      v-bind:class="{ 'active mobile-view hide': isMobile}"
       @showFollow="openFollow"/>
 
-    <HorizontalNavbar v-else/>
+    <HorizontalNavbar
+      v-if="isMobile" />
 
     <div
       id="content-container"
@@ -34,6 +35,7 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
+import mixin from '@/mixins';
 import HomeBlock from './content-block/home-block.vue';
 
 export default {
@@ -69,7 +71,7 @@ export default {
   },
   methods: {
     goDown() {
-      document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+      mixin.methods.scrollTo('about');
     },
     openFollow() {
       this.showFollow = !this.showFollow;

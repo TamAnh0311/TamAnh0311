@@ -1,5 +1,7 @@
 <template>
-  <div v-bind:class="{ 'active': isActive}" class="vertical-navbar">
+  <div
+  v-bind:class="{ 'active': isActive, 'show': isToggle}"
+  class="vertical-navbar">
     <img
       class="logo hover-invert"
       @click="activeNavbar"
@@ -34,6 +36,7 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
+import mixin from '@/mixins';
 
 export default {
   name: 'VerticalNavbar',
@@ -49,10 +52,14 @@ export default {
     isActive() {
       return store.state.isActive;
     },
+    isToggle() {
+      return store.state.isToggle;
+    },
   },
   methods: {
     goIntoView(item) {
-      document.getElementById(item).scrollIntoView({ behavior: 'smooth' });
+      mixin.methods.scrollTo(item);
+      store.commit('isToggle');
     },
     activeNavbar() {
       store.commit('checkActive');
@@ -60,11 +67,12 @@ export default {
     openFollow() {
       this.$emit('showFollow');
       this.current = 4;
+      store.commit('isToggle');
     },
   },
   mounted() {
     window.addEventListener('scroll', () => {
-      const offset = window.pageYOffset;
+      const offset = window.pageYOffset + 70;
       const about = document.getElementById('about').offsetTop;
       const portfolio = document.getElementById('portfolio').offsetTop;
       const contact = document.getElementById('contact').offsetTop;

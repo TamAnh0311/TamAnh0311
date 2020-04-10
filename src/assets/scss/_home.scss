@@ -7,8 +7,12 @@
     display: flex;
     justify-content: space-between;
     background-color: rgba($color: black, $alpha: 0.7);
-    p {
-      margin: 0;
+    div {
+      padding: 0;
+      p {
+        text-align: left;
+        margin: 0;
+      }
     }
   }
   &.mobile-view {

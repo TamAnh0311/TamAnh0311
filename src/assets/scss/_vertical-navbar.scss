@@ -11,7 +11,7 @@
   height: 100%;
   border: 0;
   border-radius: 0;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   transition: all 0.5s ease-in-out;
   .logo {
@@ -73,6 +73,13 @@
         animation-duration: 1s;
         }
       }
+    }
+  }
+  &.mobile-view {
+    background-color: rgba($color: $light-black, $alpha: 1)!important;
+    transform: translateX(-110%);
+    &.show {
+      transform: translateX(0%);
     }
   }
 }

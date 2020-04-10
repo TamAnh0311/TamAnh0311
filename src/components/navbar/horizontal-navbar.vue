@@ -1,5 +1,5 @@
 <template>
-  <div class="horizontal-navbar" v-bind:class="{ 'scroll-navbar': isScroll}">
+  <div class="horizontal-navbar navbar" v-bind:class="{'scroll-navbar': isScroll}">
     <a class="vertical-align" href="javascript:void(0)">
       <img
         class="logo hover-invert"
@@ -11,45 +11,19 @@
       />
     </a>
     <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbar-dropdown"
-      aria-controls="navbar-dropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    type="button"
+    @click="toggleMenu"
+    class="toggle-btn">
+      <span
+      :class="{'toggled': isToggle}"
+      class="material-icons">
+        keyboard_arrow_down
+      </span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbar-dropdown">
-    <ul class="navbar-nav mr-auto">
-     <li
-      class="nav-item vertical-align"
-      v-for="(item, index) in navList"
-      :key="index">
-        <a
-        class="hover-text-effect"
-        href="javascript:void(0)"
-        @click="goIntoView(item.part)"
-        >{{ item.name }}</a>
-      </li>
-    </ul>
-    </div>
-    <!-- <ul>
-      <li
-      class="vertical-align"
-      v-for="(item, index) in navList"
-      :key="index">
-        <a
-        class="hover-text-effect"
-        href="javascript:void(0)"
-        @click="goIntoView(item.part)"
-        >{{ item.name }}</a>
-      </li>
-    </ul> -->
   </div>
 </template>
 <script>
+import store from '@/store';
 import constant from '@/constant';
 
 export default {
@@ -63,6 +37,9 @@ export default {
     navList() {
       return constant.navListArray;
     },
+    isToggle() {
+      return store.state.isToggle;
+    },
   },
   methods: {
     scrollTop() {
@@ -74,14 +51,17 @@ export default {
     goIntoView(item) {
       document.getElementById(item).scrollIntoView({ behavior: 'smooth' });
     },
+    toggleMenu() {
+      store.commit('isToggle');
+    },
   },
   created() {
     window.addEventListener('scroll', () => {
       const offsetTop = window.pageYOffset;
-      if (offsetTop < 100) {
-        this.isScroll = false;
-      } else {
+      if (offsetTop > 0) {
         this.isScroll = true;
+      } else {
+        this.isScroll = false;
       }
     });
   },
