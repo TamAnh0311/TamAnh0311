@@ -1,12 +1,10 @@
 <template>
   <footer id="footer" class="footer vertical-align row">
-    <div class="col-md-8 col-lg-8 col-xl-8">
+    <div class="col-md-9 col-lg-9 col-xl-9">
       <p>© 2020 Tamanh Vu. All rights reserved.</p>
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
+    <div class="col-md-3 col-lg-3 col-xl-3 footer-btn">
       <Follow />
-    </div>
-    <div class="col-md-1 col-lg-1 col-xl-1">
       <UpDownBtn
         :isEnd="true"
         :upBlock="'home'"/>

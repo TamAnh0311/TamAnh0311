@@ -1,35 +1,33 @@
 <template>
   <div id="contact">
     <div class="contact-content page-padding">
-      <div class="header row">
-        <div class="col-md-11 col-lg-11 col-xl-11">
-          <h2 class="title">Get in Touch with Me</h2>
-        </div>
-        <div class="col-md-1 col-lg-1 col-xl-1">
-          <UpDownBtn :upBlock="'portfolio'" :downBlock="'footer'" />
-        </div>
+      <div class="header">
+          <h2 class="title">Get in Touch</h2>
+          <UpDownBtn
+            :upBlock="'portfolio'"
+            :downBlock="'footer'" />
       </div>
       <div class="contact-block">
         <p class="title">Please feel free to contact me if you need any further information.</p>
         <div class="contact-links">
           <div class="contact-links__item">
-            <div class="material-icons">location_on</div>
+            <span class="material-icons">location_on</span>
             <a
               href="https://www.google.com/maps/place/Phố+Phúc+Tân,+Phúc+Tân,+Hoàn+Kiếm,+Hà+Nội,+Việt+Nam/@21.0317424,105.8515706,16.75z/data=!4m5!3m4!1s0x3135abc10e0d4bcd:0x7675f5f9fd655347!8m2!3d21.0353887!4d105.8555889?hl=vi-VN"
             >No.5/305 Phuc Tan Str, Hoan Kiem Dist, Hanoi</a>
           </div>
           <div class="contact-links__item">
-            <div class="material-icons">smartphone</div>
+            <span class="material-icons">smartphone</span>
             <a href="tel:0338721969">(+84) 33 872 1969</a>
           </div>
           <div class="contact-links__item">
-            <div class="material-icons">mail_outline</div>
+            <span class="material-icons">mail_outline</span>
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=tamanh.vu.0311@gmail.com"
             >Tamanh.vu.0311@gmail.com</a>
           </div>
           <div class="contact-links__item">
-            <div class="material-icons">assignment_ind</div>
+            <span class="material-icons">assignment_ind</span>
             <a href="linkedin.com/in/tâm-anh-vũ-41b862168">linkedin.com/in/tâm-anh-vũ-41b862168</a>
           </div>
         </div>

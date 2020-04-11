@@ -8,6 +8,17 @@
   opacity: 0
 }
 
+.slow-fade-enter-active, 
+.slow-fade-leave-active {
+  transition: opacity 1.5s
+}
+
+.slow-fade-enter, 
+.slow-fade-leave-active {
+  opacity: 0
+}
+
+
 .slide-fade-enter-active {
   transition: all .3s ease;
 }

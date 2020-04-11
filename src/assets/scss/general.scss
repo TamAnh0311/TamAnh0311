@@ -37,7 +37,7 @@ body {
     font-size: calc(32px + 1vw);
   }
   h2 {
-    font-size: calc(12px + 1vw);
+    font-size: calc(22px + 1vw);
   }
 }
 
@@ -45,13 +45,6 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
-}
-.hover-text-effect {
-  &:hover {
-    background: -webkit-linear-gradient($violet, $blue);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 }
 .hover-invert {
   transition: all 0.3s ease-in-out;

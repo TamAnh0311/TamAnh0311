@@ -8,6 +8,7 @@
   font-size: 1.5vw;
   width: 100%;
   z-index: 2;
+  transition: all .5s ease-in-out;
   a {
     color: $light-grey;
     font-weight: 700;
@@ -29,7 +30,16 @@
 }
 
 .scroll-navbar {
-  height: 80px;
+  height: 70px;
   transition: all 0.5s ease-in-out;
   position: fixed!important;
+  img {
+    height: 50px;
+    width: 100px;
+  }
+  .toggle-btn {
+    span {
+      font-size: calc(28px + 1vw);
+    }
+  }
 }

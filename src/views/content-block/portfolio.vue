@@ -2,8 +2,11 @@
   <div id="portfolio">
     <div class="portfolio-content page-padding">
       <div class="header row">
-        <div class="col-md-3 col-lg-3 col-xl-3">
+        <div class="col-md-3 col-lg-3 col-xl-3 title-portfolio">
           <h2 class="title">My projects</h2>
+          <UpDownBtn
+          :upBlock="'about'"
+          :downBlock="'contact'" />
         </div>
         <div class="col-md-8 col-lg-8 col-xl-8 search-box">
           <input
@@ -14,7 +17,7 @@
           />
           <span class="material-icons vertical-align" @click="searchByLang">search</span>
         </div>
-        <div class="col-md-1 col-lg-1 col-xl-1 ">
+        <div class="col-md-1 col-lg-1 col-xl-1 btn-pc-view">
           <UpDownBtn
           :upBlock="'about'"
           :downBlock="'contact'" />
@@ -66,6 +69,7 @@
         </transition-group>
 
         <pagination
+          :isMobile="isMobile"
           :total-pages="totalPages"
           :total="totalProjects"
           :per-page="perPage"
@@ -94,6 +98,7 @@
 
 <script>
 import moment from 'moment';
+import store from '@/store';
 import axios from 'axios';
 import Pagination from '@/components/pagination.vue';
 import UpDownBtn from '@/components/up-down.vue';
@@ -109,7 +114,6 @@ export default {
       errors: [],
       repos: [],
       currentPage: 1,
-      perPage: 4,
       searchKey: '',
     };
   },
@@ -125,6 +129,15 @@ export default {
     },
     totalProjects() {
       return this.repos.length;
+    },
+    perPage() {
+      if (this.isMobile) {
+        return 3;
+      }
+      return 4;
+    },
+    isMobile() {
+      return store.state.isMobile;
     },
   },
   methods: {

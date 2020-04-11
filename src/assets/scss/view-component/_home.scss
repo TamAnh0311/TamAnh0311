@@ -27,3 +27,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 414px) {
+  #home {
+    .home-content {
+      height: 70%;
+    }
+  }
+}

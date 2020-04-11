@@ -5,7 +5,7 @@
       <LoadingSpinner v-if="isLoading" />
     </transition>
 
-    <transition name="fade" mode="out-in">
+    <transition name="slow-fade" mode="out-in">
       <router-view />
     </transition>
 
