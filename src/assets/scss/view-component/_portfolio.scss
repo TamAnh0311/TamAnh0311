@@ -5,13 +5,15 @@
   position: relative;
   .portfolio-content {
     .header{
-      margin-bottom: 0;
       .title-portfolio {
         display: flex;
         justify-content: space-between;
         .up-down-btn {
           display: none;
         }
+      }
+      &.row {
+        margin: 0;
       }
     }
     .search-box {
@@ -44,16 +46,8 @@
         flex: 1 0 48%;
         display: flex;
         justify-content: space-evenly;
-        background-color: rgba($color: $light-grey, $alpha: 0.1);
-        border-radius: 5px;
-        cursor: pointer;
-        &:hover {
-          -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-          -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-          box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-          transition: all .3s ease-in-out;
-          color: $light-green;
-        }
+        @include card-grey;
+        @include hover-light-green;
         .box-img {
           flex: 1;
           margin: 30px;
@@ -73,38 +67,49 @@
   }
 }
 
-@media only screen and (max-width: 414px) {
-  .header {
-    .title-portfolio {
-      display: flex;
-      justify-content: space-between;
-      .up-down-btn {
-        margin: 0;
-        display: inline-block!important;
-      }
-    }
-    .search-box {
-      margin-top: 20px;
-      justify-content: space-between!important;
-    }
-    .btn-pc-view{
-      display: none;
-    }
-  }
-  .projects {
-    .projects__item {
-      margin: 10px 0px 10px 0px!important;
-      flex: 1 0 100%!important;
-      .box-img {
-        height: 60px;
-        width: 90px;
-        margin: 10px!important;
-      }
-      .project-infor {
-        th {
-          font-size: calc(6px + 1vw)!important;
+@media only screen and (max-width: 768px) {
+  #portfolio {
+    .portfolio-content {
+      .header {
+        .title-portfolio {
+          display: flex;
+          justify-content: space-between;
+          .up-down-btn {
+            margin: 0;
+            display: inline-block;
+          }
+        }
+        .search-box {
+          margin-top: 20px;
+          justify-content: space-between;
+        }
+        .btn-pc-view{
+          display: none;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+#portfolio {
+  .portfolio-content {
+    .projects {
+      .projects__item {
+        margin: 10px 0px 10px 0px;
+        flex: 1 0 100%;
+        .box-img {
+          height: 60px;
+          width: 90px;
+          margin: 10px;
+        }
+        .project-infor {
+          th {
+            font-size: calc(6px + 1vw);
+          }
+        }
+      }
+    }
     }
   }
 }

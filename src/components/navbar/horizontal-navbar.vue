@@ -1,5 +1,7 @@
 <template>
-  <div class="horizontal-navbar navbar" v-bind:class="{'scroll-navbar': isScroll}">
+  <div
+  class="horizontal-navbar navbar"
+  v-bind:class="{'scroll-navbar': isScroll}">
     <a class="vertical-align" href="javascript:void(0)">
       <img
         class="logo hover-invert"

@@ -100,6 +100,20 @@
       }
     }
   }
+  .email-noti {
+    margin: 30px 10px 30px 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: $light-green;
+    .material-icons {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    &.error {
+      color: red;
+    }
+  }
   .btn-block {
     display: flex;
     justify-content: flex-end;
@@ -110,58 +124,68 @@
       margin-left: 20px;
       border: 2px solid;
       &.btn-submit {
-        color: $light-green;
-        border-color: $light-green;
-        &:hover {
-          background-color: $light-green;
-          color: black;
+        @include btn-light-green;
+        &.error {
+          transition: all .3s ease-in-out;
+          color: red;
+          border-color: red;
+          &:hover {
+            color: white;
+            background-color: red;
+          }
         }
       }
       &.btn-clear {
-        color: $darker-grey;
-        border-color: $darker-grey;
-        &:hover {
-          background-color: $darker-grey;
-          color: white;
-        }
+        @include btn-grey;
       }
     }
   }
 }
 
-@media only screen and (max-width: 414px) {
-  .contact-block {
-    margin: 0px 20px 0px 20px!important;
-    .contact-links {
-      margin: 10px 0px 10px 0px!important;
-      .contact-links__item {
-        flex-basis: 40%!important;
-        margin: 10px;
-        height: 100px!important;
-        justify-content: center;
-        border-radius: 5px;
-        -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-        -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-        box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
-        .material-icons {
-          font-size: calc(32px + 5vw);
-        }
-        a {
-          display: none!important;
-        }
-        &:hover {
-          -webkit-box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75)!important;
-          -moz-box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75)!important;
-          box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75)!important;
-          transition: all .3s ease-in-out;
-          .material-icons {
+@media only screen and (max-width: 768px) {
+  #contact {
+    .contact-block {
+      margin: 0px;
+      .contact-links {
+        margin: 10px 0px 10px 0px;
+        .contact-links__item {
+          flex-basis: 40%;
+          margin: 10px;
+          height: 100px;
+          justify-content: center;
+          border-radius: 5px;
+          -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+          a {
+            .material-icons {
+              font-size: calc(32px + 5vw);
+            }
+            p {
+              display: none;
+            }
+          }
+          &:hover {
+            -webkit-box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75);
+            -moz-box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75);
+            box-shadow: inset 0px 0px 0px 90px rgba($light-green ,0.75);
             transition: all .3s ease-in-out;
-            color: black!important;
+            .material-icons {
+              transition: all .3s ease-in-out;
+              color: black;
+            }
           }
         }
       }
     }
+    .email-block {
+      margin: 0px;
+    }
   }
+}
+
+
+@media only screen and (max-width: 414px) {
   .email-block {
     margin: 0px 10px 0px 10px!important;
   }

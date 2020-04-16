@@ -2,22 +2,22 @@
   <div id="portfolio">
     <div class="portfolio-content page-padding">
       <div class="header row">
-        <div class="col-md-3 col-lg-3 col-xl-3 title-portfolio">
+        <div class="col-md-4 col-lg-4 col-xl-4 title-portfolio">
           <h2 class="title">My projects</h2>
           <UpDownBtn
           :upBlock="'about'"
           :downBlock="'contact'" />
         </div>
-        <div class="col-md-8 col-lg-8 col-xl-8 search-box">
+        <div class="col-md-6 col-lg-6 col-xl-6 search-box">
           <input
             v-model="searchKey"
-            placeholder="Search by language"
+            placeholder="Search by type"
             @keyup.enter="searchByLang"
             type="text"
           />
           <span class="material-icons vertical-align" @click="searchByLang">search</span>
         </div>
-        <div class="col-md-1 col-lg-1 col-xl-1 btn-pc-view">
+        <div class="col-md-2 col-lg-2 col-xl-2 btn-pc-view">
           <UpDownBtn
           :upBlock="'about'"
           :downBlock="'contact'" />
@@ -49,21 +49,42 @@
                 <th>{{item.name}}</th>
               </tr>
               <tr>
-                <th>Language:</th>
+                <th>Type:</th>
                 <th>{{item.language}}</th>
               </tr>
-              <tr>
+              <tr v-if="!isMobile">
                 <th>Forks Count:</th>
                 <th>{{item.forks_count}}</th>
               </tr>
-              <tr>
+              <tr v-if="!isMobile">
                 <th>Owner:</th>
                 <th>{{item.owner.login}}</th>
               </tr>
-              <tr>
+              <tr v-if="!isMobile">
                 <th>Created at:</th>
                 <th>{{item.created_at | formatDate}}</th>
               </tr>
+            <!-- <div class="btn-block">
+            <div>
+              <input
+                type="reset"
+                value="Clear Message"
+                name="reset"
+                class="btn btn-primary"
+                @click="clearTextbox"
+              />
+            </div>
+            <div>
+              <input
+                type="submit"
+                value="Send Message"
+                name="submit"
+                class="btn btn-primary"
+                :class="{'error' :isError}"
+                @click="sendMessage"
+              />
+            </div>
+          </div> -->
             </table>
           </div>
         </transition-group>
@@ -142,7 +163,11 @@ export default {
   },
   methods: {
     toProject(project) {
-      window.location.href = project.html_url;
+      if (!this.isMobile) {
+        window.location.href = project.html_url;
+      } else {
+        this.$emit('openDetail', project);
+      }
     },
 
     /* eslint-disable global-require */

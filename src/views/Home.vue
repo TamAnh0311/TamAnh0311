@@ -2,11 +2,12 @@
   <div>
 
     <VerticalNavbar
-      v-bind:class="{ 'active mobile-view hide': isMobile}"
+      v-bind:class="{ 'active mobile-view hide': isMobile, '': !isMobile}"
+      @goIntoView="showFollow = false"
       @showFollow="openFollow"/>
 
     <HorizontalNavbar
-      v-if="isMobile" />
+      v-if="isMobile"/>
 
     <div
       id="content-container"
@@ -16,7 +17,8 @@
 
       <About />
 
-      <Portfolio />
+      <Portfolio
+        @openDetail="openDetailPanel"/>
 
       <Contact />
 
@@ -24,8 +26,15 @@
 
       <transition name="fade" mode="out-in">
         <FollowOverlay
-        v-if="showFollow"
-        @closeOverlay="showFollow = !showFollow"/>
+          v-show="showFollow"
+          @closeOverlay="showFollow = !showFollow"/>
+      </transition>
+
+      <transition name="slide-left" mode="out-in">
+        <ProjectDetail
+          v-if="showDetail"
+          :project="project"
+          @closePanel="closePanel"/>
       </transition>
 
     </div>
@@ -36,26 +45,33 @@
 import store from '@/store';
 import constant from '@/constant';
 import mixin from '@/mixins';
+
+import VerticalNavbar from '@/components/navbar/vertical-navbar.vue';
+import HorizontalNavbar from '@/components/navbar/horizontal-navbar.vue';
+
 import HomeBlock from './content-block/home-block.vue';
+import Portfolio from './content-block/portfolio.vue';
+import Contact from './content-block/contact.vue';
+import Footer from './content-block/footer.vue';
+import About from './content-block/about.vue';
 
 export default {
   name: 'Home',
   components: {
-    VerticalNavbar: () => import('@/components/navbar/vertical-navbar.vue'),
-    HorizontalNavbar: () => import('@/components/navbar/horizontal-navbar.vue'),
-
+    VerticalNavbar,
+    HorizontalNavbar,
     HomeBlock,
-    About: () => import('./content-block/about.vue'),
-    Portfolio: () => import('./content-block/portfolio.vue'),
-    Contact: () => import('./content-block/contact.vue'),
-    Footer: () => import('./content-block/footer.vue'),
-
+    About,
+    Portfolio,
+    Contact,
+    Footer,
     FollowOverlay: () => import('./follow-overlay.vue'),
-
+    ProjectDetail: () => import('./project-detail.vue'),
   },
   data() {
     return {
       showFollow: false,
+      project: {},
     };
   },
   computed: {
@@ -64,6 +80,9 @@ export default {
     },
     isMobile() {
       return store.state.isMobile;
+    },
+    showDetail() {
+      return store.state.showDetail;
     },
     followList() {
       return constant.followConst;
@@ -76,9 +95,16 @@ export default {
     openFollow() {
       this.showFollow = !this.showFollow;
     },
+    openDetailPanel(project) {
+      this.project = project;
+      store.commit('showDetail');
+    },
+    closePanel() {
+      store.commit('showDetail');
+    },
   },
   mounted() {
-    store.commit('checkLoading', false);
+    this.$nextTick(() => store.commit('checkLoading', false));
   },
   destroyed() {
     store.commit('checkLoading', true);

@@ -14,7 +14,6 @@
 
 <script>
 import LoadingSpinner from '@/components/loading-spinner.vue';
-
 import store from './store';
 
 export default {
@@ -30,10 +29,22 @@ export default {
       return store.state.isMobile;
     },
   },
+  methods: {
+    checkScreen() {
+      if (window.innerWidth < 420) {
+        store.commit('isMobile', true);
+      } else {
+        store.commit('isMobile', false);
+      }
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.checkScreen);
+    });
+  },
   created() {
-    if ((/Mobi/i.test(navigator.userAgent)) || window.innerWidth < 414) {
-      store.commit('isMobile');
-    }
+    this.checkScreen();
   },
 };
 

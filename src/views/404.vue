@@ -17,7 +17,7 @@ import store from '../store';
 
 export default {
   mounted() {
-    store.commit('checkLoading', false);
+    this.$nextTick(() => store.commit('checkLoading', false));
   },
   destroyed() {
     store.commit('checkLoading', true);

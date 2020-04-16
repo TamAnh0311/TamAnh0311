@@ -1,3 +1,4 @@
+//variables
 $violet: #ff99ff;
 $blue: #66ffff;
 $light-blue:#DAF2EF;
@@ -6,6 +7,38 @@ $light-grey: #f2f2f2;
 $medium-grey: #d9d9d9;
 $darker-grey: #6a6c6b;
 $light-green:#9cbc67;
+
+//mixin
+@mixin btn-light-green {
+  color: $light-green;
+  border-color: $light-green;
+  &:hover {
+    background-color: $light-green;
+    color: black;
+  }
+}
+@mixin btn-grey {
+  color: $darker-grey;
+  border-color: $darker-grey;
+  &:hover {
+    background-color: $darker-grey;
+    color: white;
+  }
+}
+@mixin card-grey {
+  background-color: rgba($color: $light-grey, $alpha: 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+}
+@mixin hover-light-green {
+  &:hover {
+    -webkit-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+    -moz-box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+    box-shadow: inset 0px 0px 0px 5px rgba($light-green ,0.75);
+    transition: all .3s ease-in-out;
+    color: $light-green;
+  }
+}
 
 //fonts
 @import url('https://fonts.googleapis.com/css?family=Gotu&display=swap');

@@ -14,10 +14,12 @@ export default {
     Follow,
   },
   mounted() {
-    document.documentElement.style.overflow = 'hidden';
+    // const overlay = document.getElementById('follow-overlay').style.display;
+    // if (overlay !== 'none') document.documentElement.style.overflow = 'hidden';
+    // if (overlay === 'none') document.documentElement.style.overflow = 'auto';
   },
   destroyed() {
-    document.documentElement.style.overflow = 'auto';
+    // document.documentElement.style.overflow = 'auto';
   },
 };
 </script>

@@ -3,12 +3,113 @@
   margin: 20px;
   background-color: rgba($color: black, $alpha: 0.7);
   .about-content {
-    h4 {
-      text-align: justify;
-      word-break: break-word;
+    .personal-statement {
+      p {
+        text-align: justify;
+        white-space: pre-wrap;
+      }
+      img {
+        border-radius: 5px;
+      }
+    }
+    .download-btn-block {
+      margin: 30px;
+      .btn-download {
+        @include btn-light-green;
+        font-size: calc(12px + 1vw);
+      }
+    }
+    .skill-set__header {
+      display: flex;
+      justify-content: space-between;
+      h3 {
+        text-align: left;
+        display: inline;
+      }
+      .material-icons {
+        font-size: calc(32px + 1vw);
+        transition: all .3s ease-in-out;
+        &.hide-panel {
+          transform: rotate(180deg);
+          transition: all .3s ease-in-out;
+        }
+      }
     }
     .skill-set {
       display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .skill-set__item {
+        flex: 1 0 33%;
+        padding: 20px;
+        max-width: 350px;
+        font-weight: 700!important;
+        @include card-grey;
+        @include hover-light-green;
+        &:hover {
+          animation: sinkUpSlow 1.5s infinite;
+        }
+        h4 {
+          text-align: left;
+          word-break: break-word;
+        }
+        .item-details {
+          max-width: 100px;
+          float: right;
+          p {
+            text-align: left;
+          }
+        }
+      }
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  #about {
+    .about-content {
+      .skill-set {
+        .skill-set__item {
+          min-width: 300px;
+          margin: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 414px) {
+  #about {
+    .about-content {
+      .personal-statement {
+        p {
+          padding:  0px 5px 0px 5px;
+        }
+        img {
+          width: 330px;
+          height: 330px;
+        }
+      }
+      .download-btn-block {
+        margin: 50px 30px 50px 30px;
+        .btn-download {
+          font-size: calc(24px + 1vw);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #about {
+    .about-content {
+      .download-btn-block {
+        .btn-download {
+          font-size: calc(20px + 1vw);
+        }
+      }
+    }
+  }
+}
+

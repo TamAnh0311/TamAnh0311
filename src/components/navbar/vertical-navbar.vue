@@ -1,6 +1,6 @@
 <template>
   <div
-  v-bind:class="{ 'active': isActive, 'show': isToggle}"
+  v-bind:class="{ 'active': isActive, 'show': (isToggle && isMobile)}"
   class="vertical-navbar">
     <img
       class="logo hover-invert"
@@ -55,10 +55,18 @@ export default {
     isToggle() {
       return store.state.isToggle;
     },
+    isMobile() {
+      return store.state.isMobile;
+    },
+    showDetail() {
+      return store.state.showDetail;
+    },
   },
   methods: {
     goIntoView(item) {
+      if (this.showDetail) store.commit('showDetail');
       mixin.methods.scrollTo(item);
+      this.$emit('goIntoView');
       store.commit('isToggle');
     },
     activeNavbar() {
@@ -66,12 +74,9 @@ export default {
     },
     openFollow() {
       this.$emit('showFollow');
-      this.current = 4;
       store.commit('isToggle');
     },
-  },
-  mounted() {
-    window.addEventListener('scroll', () => {
+    detectBlock() {
       const offset = window.pageYOffset + 70;
       const about = document.getElementById('about').offsetTop;
       const portfolio = document.getElementById('portfolio').offsetTop;
@@ -81,6 +86,15 @@ export default {
       if (offset >= about) this.current = 1;
       if (offset >= portfolio) this.current = 2;
       if (offset >= contact) this.current = 3;
+    },
+  },
+  updated() {
+    const overlay = document.getElementById('follow-overlay').style.display;
+    if (overlay !== 'none') this.current = 4;
+  },
+  mounted() {
+    window.addEventListener('scroll', () => {
+      this.detectBlock();
     });
   },
 };

@@ -9,6 +9,7 @@ export default new Vuex.Store({
     isActive: false,
     isMobile: false,
     isToggle: false,
+    showDetail: false,
   },
   mutations: {
     checkLoading(state, n) {
@@ -17,11 +18,14 @@ export default new Vuex.Store({
     checkActive(state) {
       state.isActive = !state.isActive;
     },
-    isMobile(state) {
-      state.isMobile = true;
+    isMobile(state, n) {
+      state.isMobile = n;
     },
     isToggle(state) {
       state.isToggle = !state.isToggle;
+    },
+    showDetail(state) {
+      state.showDetail = !state.showDetail;
     },
   },
   actions: {

@@ -1,9 +1,9 @@
 <template>
   <footer id="footer" class="footer vertical-align row">
-    <div class="col-md-9 col-lg-9 col-xl-9">
+    <div class="col-md-6 col-lg-6 col-xl-6">
       <p>© 2020 Tamanh Vu. All rights reserved.</p>
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-3 footer-btn">
+    <div class="col-md-6 col-lg-6 col-xl-6 footer-btn">
       <Follow />
       <UpDownBtn
         :isEnd="true"

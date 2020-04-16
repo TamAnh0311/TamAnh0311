@@ -9,6 +9,8 @@
   width: 100%;
   z-index: 2;
   transition: all .5s ease-in-out;
+  animation: fadeIn;
+  animation-duration: .5s;
   a {
     color: $light-grey;
     font-weight: 700;
