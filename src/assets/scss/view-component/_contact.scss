@@ -35,6 +35,17 @@
       }
     }
   }
+  .email-block__header {
+    display: flex;
+    justify-content: space-between;
+    p {
+      align-self: center;
+      display: inline;
+    }
+    .material-icons {
+      @include icon-show-panel;
+    }
+  }
   .email-block {
     margin: 0px 40px 0px 40px;
     .email-block__item {
@@ -99,6 +110,9 @@
         -moz-transition: all 200ms ease-in;
       }
     }
+  }
+  .bottom-card {
+   @include bottom-card;
   }
   .email-noti {
     margin: 30px 10px 30px 10px;

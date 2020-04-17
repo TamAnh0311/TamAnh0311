@@ -20,6 +20,7 @@
     bottom: 10px;
     width: 100%;
     text-align: center;
+    animation: fadeIn 3s;
     .material-icons {
       font-size: calc(32px + 3vw);
       animation: sinkUp 2s infinite;
@@ -33,6 +34,9 @@
     height: 550px;
     .home-content {
       height: 50%;
+    }
+    .expand-sector {
+      bottom: 30%;
     }
   }
 }

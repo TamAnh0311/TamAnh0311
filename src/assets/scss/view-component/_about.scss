@@ -7,6 +7,9 @@
       p {
         text-align: justify;
         white-space: pre-wrap;
+        &::first-letter {
+          padding-left: 10px;
+        }
       }
       img {
         border-radius: 5px;
@@ -27,13 +30,11 @@
         display: inline;
       }
       .material-icons {
-        font-size: calc(32px + 1vw);
-        transition: all .3s ease-in-out;
-        &.hide-panel {
-          transform: rotate(180deg);
-          transition: all .3s ease-in-out;
-        }
+        @include icon-show-panel;
       }
+    }
+    .bottom-card {
+      @include bottom-card;
     }
     .skill-set {
       display: flex;
@@ -104,6 +105,11 @@
 @media only screen and (max-width: 320px) {
   #about {
     .about-content {
+      .personal-statement {
+        img {
+          height: 250px;
+        }
+      }
       .download-btn-block {
         .btn-download {
           font-size: calc(20px + 1vw);

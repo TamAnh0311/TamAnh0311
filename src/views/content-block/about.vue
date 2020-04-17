@@ -25,7 +25,7 @@
           <!-- eslint-enable max-len -->
         </div>
         <div class="col-md-4 col-lg-4 col-xl-4">
-          <img class="img-fluid" width="250" height="250" src="@/assets/images/avatar.jpg" />
+          <img class="img-fluid" width="250" height="250" src="@/assets/images/avatar2.jpg" />
         </div>
       </div>
       <div class="download-btn-block">
@@ -71,6 +71,12 @@
         </div>
       </div>
       </transition>
+      <div
+      class="bottom-card vertical-align"
+      v-if="(!showSkillSet && isMobile)"
+      @click="showSkillSetPanel">
+        <p>Tap here to see my skill set</p>
+      </div>
     </div>
   </div>
 </template>

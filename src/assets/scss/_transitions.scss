@@ -43,7 +43,7 @@
 
 .slide-left-leave-active,
 .slide-left-enter-active {
-  transition: 1s;
+  transition: .5s;
 }
 .slide-left-enter {
   transform: translate(100%, 0);

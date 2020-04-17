@@ -48,8 +48,19 @@
           </div>
         </div>
       </div>
-      <div class="email-block">
-        <p class="title lh-5">Or send me direct message</p>
+      <div class="email-block__header">
+        <p class="title">Or send me direct message</p>
+        <span
+        class="material-icons"
+        :class="{'hide-panel' : showEmail}"
+        @click="showEmailPanel"
+        v-if="isMobile">
+          arrow_drop_down
+        </span>
+      </div>
+
+      <transition name="slide-down" mode="out-in">
+      <div class="email-block" v-if="(!isMobile || showEmail)">
         <div class="row">
           <div class="col-md-6">
             <div class="email-block__item">
@@ -75,7 +86,7 @@
             </div>
           </div>
           <div class="col-md-6 lp5">
-            <div class="form-row text-area-row email-block__item">
+            <div class="email-block__item">
               <label class="title">Message</label>
               <textarea
               name="message"
@@ -84,7 +95,7 @@
             </div>
           </div>
 
-          <transition name="fade" mode="in-out">
+          <transition name="slide-down" mode="in-out">
           <div
           class="email-noti"
           :class="{'error' :isError}"
@@ -119,12 +130,21 @@
           </div>
         </div>
       </div>
+      </transition>
+
+      <div
+      class="bottom-card vertical-align"
+      v-if="(!showEmail && isMobile)"
+      @click="showEmailPanel">
+        <p>Tap here to open email sending form</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import store from '@/store';
 import UpDownBtn from '@/components/up-down.vue';
 
 export default {
@@ -134,6 +154,7 @@ export default {
   },
   data() {
     return {
+      showEmail: false,
       isError: false,
       emailNoti: '',
       directMessage: {
@@ -143,6 +164,11 @@ export default {
         content: '',
       },
     };
+  },
+  computed: {
+    isMobile() {
+      return store.state.isMobile;
+    },
   },
   methods: {
     sendMessage() {
@@ -170,6 +196,9 @@ export default {
           this.emailNoti = 'Some errors occured, please try again!';
           this.isError = true;
         });
+    },
+    showEmailPanel() {
+      this.showEmail = !this.showEmail;
     },
     clearTextbox() {
       this.directMessage.content = '';

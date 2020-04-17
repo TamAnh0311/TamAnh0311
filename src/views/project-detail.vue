@@ -1,7 +1,11 @@
 <template>
   <div id="project-detail" v-if="project">
+    <div class="close-panel">
+      <span class="material-icons" @click="$emit('closePanel')">chevron_right</span>
+    </div>
+
     <div class="project-detail-content">
-      <img src="../assets/images/box.png" height="200" width="250" alt />
+      <img src="../assets/images/box.png" height="180" width="220" alt />
     <div class="project-detail-info">
       <table>
         <tr>
@@ -34,9 +38,6 @@
         />
       </div>
     </div>
-    </div>
-    <div class="close-panel">
-      <span class="material-icons" @click="$emit('closePanel')">keyboard_tab</span>
     </div>
   </div>
 </template>

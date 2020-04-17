@@ -9,7 +9,7 @@
   z-index: 1;
   overflow: hidden;
   .project-detail-content{
-    margin: 100px 20px 50px 20px;
+    margin: 200px 20px 50px 20px;
     .project-detail-info{
       margin-top: 50px;
       @include card-grey;
@@ -38,12 +38,12 @@
   }
   .close-panel {
     position: absolute;
-    bottom: 0;
-    right: 5%;
+    top: 10%;
+    left: 0;
     .material-icons {
-      font-size: calc(50px + 1vw);
+      font-size: calc(60px + 1vw);
       color: $light-green;
-      animation: fadeIn 1s;
+      animation: rotate180 .5s;
     }
   }
 }

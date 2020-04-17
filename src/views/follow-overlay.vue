@@ -1,6 +1,7 @@
 <template>
   <div id="follow-overlay" class="follow-overlay vertical-align">
     <span class="close" @click="$emit('closeOverlay')">&times;</span>
+    <!-- <p>Me, elsewhere</p> -->
     <Follow />
   </div>
 </template>
