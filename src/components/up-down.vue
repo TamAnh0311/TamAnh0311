@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import mixin from '@/mixins';
 
 export default {
   name: 'UpDownBtn',
@@ -30,7 +29,7 @@ export default {
   },
   methods: {
     goTo(block) {
-      mixin.methods.scrollTo(block);
+      this.$scrollTo(`#${block}`);
     },
   },
 };

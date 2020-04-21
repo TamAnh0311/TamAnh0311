@@ -36,7 +36,6 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
-import mixin from '@/mixins';
 
 export default {
   name: 'VerticalNavbar',
@@ -74,7 +73,7 @@ export default {
   methods: {
     goIntoView(item) {
       if (this.showDetail) store.commit('showDetail');
-      mixin.methods.scrollTo(item);
+      this.$scrollTo(`#${item}`, 400);
       this.$emit('goIntoView');
       store.commit('isToggle');
     },

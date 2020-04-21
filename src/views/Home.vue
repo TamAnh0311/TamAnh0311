@@ -18,7 +18,9 @@
 
       <About />
 
-      <Portfolio @openDetail="openDetailPanel"/>
+      <Portfolio
+      @openMessage="openNotiBox"
+      @openDetail="openDetailPanel"/>
 
       <Contact />
 
@@ -28,6 +30,14 @@
         <FollowOverlay
           v-if="showFollow"
           @closeOverlay="showFollow = !showFollow"/>
+      </transition>
+
+      <transition name="fadeScale" mode="out-in">
+        <Notification
+        v-if="showNoti"
+        :message="notiMessage"
+        @closeNoti="showNoti = !showNoti"
+        />
       </transition>
 
       <transition name="slide-left" mode="out-in">
@@ -44,7 +54,6 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
-import mixin from '@/mixins';
 
 import VerticalNavbar from '@/components/navbar/vertical-navbar.vue';
 import HorizontalNavbar from '@/components/navbar/horizontal-navbar.vue';
@@ -69,11 +78,14 @@ export default {
     FollowOverlay,
     // FollowOverlay: () => import('./follow-overlay.vue'),
     ProjectDetail: () => import('./project-detail.vue'),
+    Notification: () => import('@/components/notification.vue'),
   },
   data() {
     return {
       showFollow: false,
+      showNoti: false,
       project: {},
+      notiMessage: '',
     };
   },
   computed: {
@@ -92,7 +104,7 @@ export default {
   },
   methods: {
     goDown() {
-      mixin.methods.scrollTo('about');
+      this.$scrollTo('#about', { offset: this.isMobile ? -200 : -70 });
     },
     openFollow() {
       this.showFollow = !this.showFollow;
@@ -103,6 +115,10 @@ export default {
     },
     closePanel() {
       store.commit('showDetail');
+    },
+    openNotiBox(str) {
+      this.showNoti = true;
+      this.notiMessage = str;
     },
   },
   mounted() {

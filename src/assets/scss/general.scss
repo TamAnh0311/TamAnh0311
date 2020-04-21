@@ -4,6 +4,7 @@
 @import './transitions';
 @import './pagination';
 @import './up-down-btn';
+@import './_notification';
 
 @import './navbar/horizontal-navbar';
 @import './navbar/vertical-navbar';
@@ -47,6 +48,10 @@ body {
   h2 {
     font-size: calc(18px + 1vw);
   }
+}
+
+.hand-cursor {
+  cursor: pointer;
 }
 
 .vertical-align {

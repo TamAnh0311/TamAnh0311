@@ -73,7 +73,7 @@
                 value="Clone"
                 name="reset"
                 class="btn btn-project"
-                @click="cloneProject(item.clone_url)"
+                @click="cloneProject(item)"
               />
             </div>
             <div>
@@ -173,11 +173,12 @@ export default {
       );
     },
 
-    /* eslint-disable no-alert */
-    cloneProject(url) {
+    cloneProject(project) {
+      const noti = `Copied ${project.name} clone link to the clipboard.\n Use git command to clone project`;
+      const url = project.clone_url;
       navigator.clipboard.writeText(url)
-        .then(() => alert('Clone url copied to clipboard'))
-        .catch((e) => alert(e));
+        .then(() => this.$emit('openMessage', noti))
+        .catch((e) => this.$emit('openMessage', e.toString()));
       const el = document.createElement('textarea');
       el.value = url;
       document.body.appendChild(el);
@@ -185,7 +186,6 @@ export default {
       document.execCommand('copy');
       document.body.removeChild(el);
     },
-    /* eslint-disable no-alert */
 
     /* eslint-disable global-require */
     changeImgGreen(index) {

@@ -54,3 +54,14 @@
 .slide-left-leave-to {
   transform: translate(100%, 0);
 }
+
+.fadeScale-enter-active, 
+.fadeScale-leave-active {
+  transition: all .3s ease-in-out;
+}
+
+.fadeScale-enter, 
+.fadeScale-leave-active {
+  opacity: 0;
+  transform: scale(0.1);
+}
