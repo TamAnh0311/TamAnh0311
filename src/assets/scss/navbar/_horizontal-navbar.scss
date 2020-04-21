@@ -1,8 +1,6 @@
-@import './variables';
-
 .horizontal-navbar {
   height: 100px;
-  background-color: $light-black;
+  @include dark-bg;
   display: flex;
   justify-content: space-around;
   font-size: 1.5vw;
@@ -32,6 +30,7 @@
 }
 
 .scroll-navbar {
+  background-color: $darker-black;
   height: 70px;
   transition: all 0.5s ease-in-out;
   position: fixed!important;

@@ -35,4 +35,51 @@ export default {
       icon: 'fa-linkedin',
     },
   ],
+  skillSet: [
+    {
+      name: 'Javasrcipt',
+      item: [
+        'VueJS',
+        'Angular',
+        'Jquery',
+      ],
+    },
+    {
+      name: 'Web Structures',
+      item: [
+        'HTML/CSS',
+        'SCSS',
+        'RESTful API',
+      ],
+    },
+    {
+      name: 'Template Design',
+      item: [
+        'Gulp',
+        'Nunjucks',
+      ],
+    },
+  ],
+  contactItem: [
+    {
+      href: 'https://www.google.com/maps/place/Phố+Phúc+Tân,+Phúc+Tân,+Hoàn+Kiếm,+Hà+Nội,+Việt+Nam/@21.0317424,105.8515706,16.75z/data=!4m5!3m4!1s0x3135abc10e0d4bcd:0x7675f5f9fd655347!8m2!3d21.0353887!4d105.8555889?hl=vi-VN',
+      icon: 'location_on',
+      content: 'No.5/305 Phuc Tan Str, Hoan Kiem Dist, Hanoi',
+    },
+    {
+      href: 'tel:0338721969',
+      icon: 'smartphone',
+      content: '(+ 84) 33 872 1969',
+    },
+    {
+      href: 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=tamanh.vu.0311@gmail.com',
+      icon: 'mail_outline',
+      content: 'Tamanh.vu.0311@gmail.com',
+    },
+    {
+      href: 'https://linkedin.com/in/tâm-anh-vũ-41b862168',
+      icon: 'assignment_ind',
+      content: 'linkedin.com/in/tâm-anh-vũ-41b862168',
+    },
+  ],
 };

@@ -3,16 +3,28 @@ $violet: #ff99ff;
 $blue: #66ffff;
 $light-blue:#DAF2EF;
 $light-black: #262626;
+$darker-black: #1a1a1a;
 $light-grey: #f2f2f2;
 $medium-grey: #d9d9d9;
 $darker-grey: #6a6c6b;
-// $light-green:#859fed;
 $light-green:#9cbc67;
 $fb-blue: #677fb5;
 $linkedin-blue: #3daccf;
 $plum: #b50572;
 
 //mixin
+@mixin dark-bg {
+  background-color: rgba($color: black, $alpha: 0.7);
+}
+
+@mixin dark-bg-mobile {
+  background-color: rgba($color: black, $alpha: 0.85);
+}
+
+@mixin mobile-margin {
+  margin: 15px;
+}
+
 @mixin btn-light-green {
   color: $light-green;
   border-color: $light-green;

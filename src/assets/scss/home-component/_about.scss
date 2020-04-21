@@ -1,12 +1,13 @@
 #about {
   height: auto;
   margin: 20px;
-  background-color: rgba($color: black, $alpha: 0.7);
+  @include dark-bg;
   .about-content {
     .personal-statement {
       p {
         text-align: justify;
         white-space: pre-wrap;
+        text-justify: inter-word;
         &::first-letter {
           padding-left: 10px;
         }
@@ -41,9 +42,9 @@
       justify-content: space-between;
       flex-wrap: wrap;
       .skill-set__item {
-        flex: 1 0 33%;
+        flex: 1 0 30%;
+        margin: 10px;
         padding: 20px;
-        max-width: 350px;
         font-weight: 700!important;
         @include card-grey;
         @include hover-light-green;
@@ -82,6 +83,8 @@
 
 @media only screen and (max-width: 414px) {
   #about {
+    @include mobile-margin;
+    @include dark-bg-mobile;
     .about-content {
       .personal-statement {
         p {

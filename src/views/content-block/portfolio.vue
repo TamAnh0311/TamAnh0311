@@ -30,9 +30,9 @@
         <transition-group name="slide-fade"  class="projects" tag="div">
           <div
             v-for="(item, index) in repositories"
-            :key="index"
+            :key="index + 0"
+            v-on="isMobile ? { click: () => openProject(item) } : {}"
             class="projects__item vertical-align"
-            @click="toProject(item)"
             @mouseover="changeImgGreen(index)"
             @mouseleave="changeImg(index)"
           >
@@ -43,7 +43,8 @@
               height="100"
               width="150"
             />
-            <table class="project-infor">
+            <div class="project-infor">
+            <table>
               <tr>
                 <th>Name:</th>
                 <th>{{item.name}}</th>
@@ -64,28 +65,28 @@
                 <th>Created at:</th>
                 <th>{{item.created_at | formatDate}}</th>
               </tr>
-            <!-- <div class="btn-block">
+            </table>
+            <div class="project-btn" v-if="!isMobile">
             <div>
               <input
                 type="reset"
-                value="Clear Message"
+                value="Clone"
                 name="reset"
-                class="btn btn-primary"
-                @click="clearTextbox"
+                class="btn btn-project"
+                @click="cloneProject(item.clone_url)"
               />
             </div>
             <div>
               <input
                 type="submit"
-                value="Send Message"
+                value="Go to GitHub"
                 name="submit"
-                class="btn btn-primary"
-                :class="{'error' :isError}"
-                @click="sendMessage"
+                class="btn btn-project"
+                @click="toProject(item.html_url)"
               />
             </div>
-          </div> -->
-            </table>
+          </div>
+            </div>
           </div>
         </transition-group>
 
@@ -162,13 +163,29 @@ export default {
     },
   },
   methods: {
-    toProject(project) {
-      if (!this.isMobile) {
-        window.location.href = project.html_url;
-      } else {
-        this.$emit('openDetail', project);
-      }
+    openProject(project) {
+      this.$emit('openDetail', project);
     },
+    toProject(url) {
+      window.open(
+        url,
+        '_blank',
+      );
+    },
+
+    /* eslint-disable no-alert */
+    cloneProject(url) {
+      navigator.clipboard.writeText(url)
+        .then(() => alert('Clone url copied to clipboard'))
+        .catch((e) => alert(e));
+      const el = document.createElement('textarea');
+      el.value = url;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    },
+    /* eslint-disable no-alert */
 
     /* eslint-disable global-require */
     changeImgGreen(index) {

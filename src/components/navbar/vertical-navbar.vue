@@ -15,7 +15,7 @@
         class="vertical-align"
         v-for="(item, index) in navList"
         :key="index"
-        v-bind:class="{ 'pos-current': current === index}"
+        v-bind:class="{ 'pos-current': currentPos === index}"
         @click="goIntoView(item.part)"
       >
         <span class="material-icons">{{item.icon}}</span>
@@ -24,7 +24,7 @@
       </li>
       <li
       class="vertical-align"
-      v-bind:class="{ 'pos-current': current === 4}"
+      v-bind:class="{ 'pos-current': currentPos === 4}"
       @click="openFollow">
         <span class="material-icons">favorite</span>
         <span class="item-name">Follow</span>
@@ -40,6 +40,9 @@ import mixin from '@/mixins';
 
 export default {
   name: 'VerticalNavbar',
+  props: {
+    showFollow: Boolean,
+  },
   data() {
     return {
       current: 0,
@@ -61,6 +64,12 @@ export default {
     showDetail() {
       return store.state.showDetail;
     },
+    isShowFollow() {
+      return this.showFollow;
+    },
+    currentPos() {
+      return this.current;
+    },
   },
   methods: {
     goIntoView(item) {
@@ -77,7 +86,7 @@ export default {
       store.commit('isToggle');
     },
     detectBlock() {
-      const offset = window.pageYOffset + 70;
+      const offset = (this.isMobile ? (window.pageYOffset + 130) : (window.pageYOffset + 70));
       const about = document.getElementById('about').offsetTop;
       const portfolio = document.getElementById('portfolio').offsetTop;
       const contact = document.getElementById('contact').offsetTop;
@@ -88,14 +97,17 @@ export default {
       if (offset >= contact) this.current = 3;
     },
   },
-  updated() {
-    const overlay = document.getElementById('follow-overlay').style.display;
-    if (overlay !== 'none') this.current = 4;
-  },
+
   mounted() {
     window.addEventListener('scroll', () => {
       this.detectBlock();
     });
+  },
+  watch: {
+  /* eslint no-unused-expressions: [2, { allowTernary: true }] */
+    isShowFollow() {
+      !this.isShowFollow ? this.detectBlock() : this.current = 4;
+    },
   },
 };
 </script>

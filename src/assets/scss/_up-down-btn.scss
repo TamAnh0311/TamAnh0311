@@ -1,6 +1,7 @@
 .up-down-btn {
   display: flex;
   justify-content: flex-end;
+  align-self: center;
   span {
     font-size: calc(32px + 1vw);
     transition: all .3s ease-in-out;

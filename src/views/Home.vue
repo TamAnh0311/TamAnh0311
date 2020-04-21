@@ -3,6 +3,7 @@
 
     <VerticalNavbar
       v-bind:class="{ 'active mobile-view hide': isMobile, '': !isMobile}"
+      :showFollow="showFollow"
       @goIntoView="showFollow = false"
       @showFollow="openFollow"/>
 
@@ -17,8 +18,7 @@
 
       <About />
 
-      <Portfolio
-        @openDetail="openDetailPanel"/>
+      <Portfolio @openDetail="openDetailPanel"/>
 
       <Contact />
 
@@ -26,7 +26,7 @@
 
       <transition name="fade" mode="out-in">
         <FollowOverlay
-          v-show="showFollow"
+          v-if="showFollow"
           @closeOverlay="showFollow = !showFollow"/>
       </transition>
 
@@ -54,6 +54,7 @@ import Portfolio from './content-block/portfolio.vue';
 import Contact from './content-block/contact.vue';
 import Footer from './content-block/footer.vue';
 import About from './content-block/about.vue';
+import FollowOverlay from './follow-overlay.vue';
 
 export default {
   name: 'Home',
@@ -65,7 +66,8 @@ export default {
     Portfolio,
     Contact,
     Footer,
-    FollowOverlay: () => import('./follow-overlay.vue'),
+    FollowOverlay,
+    // FollowOverlay: () => import('./follow-overlay.vue'),
     ProjectDetail: () => import('./project-detail.vue'),
   },
   data() {

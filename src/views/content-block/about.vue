@@ -46,27 +46,17 @@
       </div>
       <transition name="slide-down" mode="in-out">
       <div class="skill-set" v-if="(showSkillSet || !isMobile)">
-        <div class="skill-set__item">
-          <h4>Javascript</h4>
+        <div
+        v-for="(sector, index) in skillSet"
+        :key="index"
+        class="skill-set__item">
+          <h4>{{ sector.name }}</h4>
           <div class="item-details">
-            <p>VueJS</p>
-            <p>Angular 6</p>
-            <p>Jquery</p>
-          </div>
-        </div>
-        <div class="skill-set__item">
-          <h4>Web Structures</h4>
-          <div class="item-details">
-            <p>HTML/CSS</p>
-            <p>SCSS</p>
-            <p>RESTful API</p>
-          </div>
-        </div>
-        <div class="skill-set__item">
-          <h4>Template Design</h4>
-          <div class="item-details">
-            <p>Gulp</p>
-            <p>Nunjucks</p>
+            <p
+            v-for="(item, index) in sector.item"
+            :key="index">
+              {{ item }}
+            </p>
           </div>
         </div>
       </div>
@@ -83,6 +73,7 @@
 
 <script>
 import store from '@/store';
+import constant from '@/constant';
 import UpDownBtn from '@/components/up-down.vue';
 
 export default {
@@ -98,6 +89,9 @@ export default {
   computed: {
     isMobile() {
       return store.state.isMobile;
+    },
+    skillSet() {
+      return constant.skillSet;
     },
   },
   methods: {

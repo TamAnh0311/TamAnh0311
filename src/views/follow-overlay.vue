@@ -1,7 +1,7 @@
 <template>
   <div id="follow-overlay" class="follow-overlay vertical-align">
     <span class="close" @click="$emit('closeOverlay')">&times;</span>
-    <!-- <p>Me, elsewhere</p> -->
+    <p>Me, elsewhere</p>
     <Follow />
   </div>
 </template>
@@ -15,12 +15,10 @@ export default {
     Follow,
   },
   mounted() {
-    // const overlay = document.getElementById('follow-overlay').style.display;
-    // if (overlay !== 'none') document.documentElement.style.overflow = 'hidden';
-    // if (overlay === 'none') document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'hidden';
   },
   destroyed() {
-    // document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
   },
 };
 </script>

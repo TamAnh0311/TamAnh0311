@@ -10,39 +10,14 @@
       <div class="contact-block">
         <p class="title">Please feel free to contact me if you need any further information.</p>
         <div class="contact-links">
-          <div class="contact-links__item">
-            <a
-              href="https://www.google.com/maps/place/Phố+Phúc+Tân,+Phúc+Tân,+Hoàn+Kiếm,+Hà+Nội,+Việt+Nam/@21.0317424,105.8515706,16.75z/data=!4m5!3m4!1s0x3135abc10e0d4bcd:0x7675f5f9fd655347!8m2!3d21.0353887!4d105.8555889?hl=vi-VN"
-            >
-              <span class="material-icons">location_on</span>
+          <div
+          v-for="(item, index) in contactItem"
+          :key="index"
+          class="contact-links__item">
+            <a :href="(isMobile ? item.href : 'javascript:void(0)')">
+              <span class="material-icons">{{item.icon}}</span>
               <p>
-                No.5/305 Phuc Tan Str, Hoan Kiem Dist, Hanoi
-              </p>
-            </a>
-          </div>
-          <div class="contact-links__item">
-            <a href="tel:0338721969">
-              <span class="material-icons">smartphone</span>
-              <p>
-                (+ 84) 33 872 1969
-              </p>
-            </a>
-          </div>
-          <div class="contact-links__item">
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=tamanh.vu.0311@gmail.com"
-            >
-              <span class="material-icons">mail_outline</span>
-              <p>
-                Tamanh.vu.0311@gmail.com
-              </p>
-            </a>
-          </div>
-          <div class="contact-links__item">
-            <a href="https://linkedin.com/in/tâm-anh-vũ-41b862168">
-              <span class="material-icons">assignment_ind</span>
-              <p>
-                linkedin.com/in/tâm-anh-vũ-41b862168
+                {{item.content}}
               </p>
             </a>
           </div>
@@ -145,6 +120,7 @@
 <script>
 import axios from 'axios';
 import store from '@/store';
+import constant from '@/constant';
 import UpDownBtn from '@/components/up-down.vue';
 
 export default {
@@ -168,6 +144,9 @@ export default {
   computed: {
     isMobile() {
       return store.state.isMobile;
+    },
+    contactItem() {
+      return constant.contactItem;
     },
   },
   methods: {

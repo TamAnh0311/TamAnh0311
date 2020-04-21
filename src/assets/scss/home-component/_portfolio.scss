@@ -1,7 +1,7 @@
 #portfolio {
   height: auto;
   margin: 20px;
-  background-color: rgba($color: black, $alpha: 0.7);
+  @include dark-bg;
   position: relative;
   .portfolio-content {
     .header{
@@ -45,18 +45,42 @@
         margin: 10px;
         flex: 1 0 48%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-start;
         @include card-grey;
         @include hover-light-green;
         .box-img {
-          flex: 1;
-          margin: 30px;
+          margin: 30px 40px 30px 50px;
         }
         .project-infor {
-          flex: 3;
-          th {
-            text-align: left;
-            font-size: calc(2px + 1vw);
+          width: 100%;
+          table {
+            th {
+              text-align: left;
+              font-size: calc(2px + 1vw);
+            }
+          }
+          .project-btn {
+            opacity: 0;
+            height: 0;
+            display: flex;
+            margin: 10px 20px 0px 0px;
+            justify-content: flex-end;
+            transition: all .3s ease-in-out;
+            .btn-project {
+              margin-left: 10px;
+              font-size: 1rem;
+              font-weight: 700;
+              @include btn-light-green;
+            }
+          }
+        }
+        &:hover {
+          .project-infor {
+            .project-btn {
+              height: 30px;
+              opacity: 1;
+              transition: all .3s ease-in-out;
+            }
           }
         }
       }
@@ -98,18 +122,34 @@
       .projects__item {
         margin: 10px 0px 10px 0px;
         flex: 1 0 100%;
+        justify-content: flex-start;
         .box-img {
-          height: 60px;
-          width: 90px;
+          height: 70px;
+          width: 110px;
           margin: 10px;
         }
         .project-infor {
-          th {
-            font-size: calc(6px + 1vw);
+          table {
+            th {
+              font-size: calc(10px + 1vw);
+            }
           }
         }
       }
     }
+    }
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  #portfolio {
+    @include mobile-margin;
+    @include dark-bg-mobile;
+    .portfolio-content {
+      .projects {
+        .projects__item {
+        }
+      }
     }
   }
 }
