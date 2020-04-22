@@ -1,6 +1,6 @@
 <template>
   <div class="notification vertical-align">
-    <div class="notification-card">
+    <div class="notification-card" v-click-outside="closeNoti">
       <div class="notification-header">
         <div class="header-title">
           <span class="material-icons">
@@ -40,6 +40,9 @@ export default {
     },
   },
   methods: {
+    consol() {
+      console.log('aasad');
+    },
     closeNoti() {
       this.$emit('closeNoti');
     },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-hammer:swipe.right="setToggleTrue">
 
     <VerticalNavbar
       v-bind:class="{ 'active mobile-view hide': isMobile, '': !isMobile}"
@@ -101,6 +101,9 @@ export default {
     followList() {
       return constant.followConst;
     },
+    isToggle() {
+      return store.state.isToggle;
+    },
   },
   methods: {
     goDown() {
@@ -110,6 +113,7 @@ export default {
       this.showFollow = !this.showFollow;
     },
     openDetailPanel(project) {
+      if (this.isToggle) store.commit('isToggle');
       this.project = project;
       store.commit('showDetail');
     },
@@ -119,6 +123,9 @@ export default {
     openNotiBox(str) {
       this.showNoti = true;
       this.notiMessage = str;
+    },
+    setToggleTrue() {
+      store.commit('setToggle', true);
     },
   },
   mounted() {

@@ -1,5 +1,6 @@
 <template>
   <div
+  v-hammer:swipe.left="toggleMenu"
   v-bind:class="{ 'active': isActive, 'show': (isToggle && isMobile)}"
   class="vertical-navbar">
     <img
@@ -79,6 +80,9 @@ export default {
     },
     activeNavbar() {
       store.commit('checkActive');
+    },
+    toggleMenu() {
+      store.commit('isToggle');
     },
     openFollow() {
       this.$emit('showFollow');

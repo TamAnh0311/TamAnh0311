@@ -73,7 +73,7 @@
                 value="Clone"
                 name="reset"
                 class="btn btn-project"
-                @click="cloneProject(item)"
+                @click.stop="cloneProject(item)"
               />
             </div>
             <div>

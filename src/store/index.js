@@ -24,6 +24,9 @@ export default new Vuex.Store({
     isToggle(state) {
       state.isToggle = !state.isToggle;
     },
+    setToggle(state, n) {
+      state.isToggle = n;
+    },
     showDetail(state) {
       state.showDetail = !state.showDetail;
     },

@@ -1,7 +1,10 @@
 <template>
-  <div id="project-detail" v-if="project">
+  <div id="project-detail"
+  v-if="project"
+  v-hammer:swipe.right="closePanel"
+  >
     <div class="close-panel">
-      <span class="material-icons" @click="$emit('closePanel')">chevron_right</span>
+      <span class="material-icons" @click="closePanel">chevron_right</span>
     </div>
 
     <div class="project-detail-content">
@@ -56,6 +59,9 @@ export default {
   methods: {
     toProject(url) {
       window.location.href = url;
+    },
+    closePanel() {
+      this.$emit('closePanel');
     },
   },
   filters: {
