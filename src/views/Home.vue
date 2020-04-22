@@ -127,9 +127,11 @@ export default {
     },
     setToggle(e) {
       const swipe = e.type;
-      swipe === 'swiperight'
-        ? store.commit('setToggle', true)
-        : store.commit('setToggle', false);
+      if (this.isMobile) {
+        swipe === 'swiperight'
+          ? store.commit('setToggle', true)
+          : store.commit('setToggle', false);
+      }
     },
   },
   mounted() {
