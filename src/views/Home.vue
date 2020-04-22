@@ -1,5 +1,6 @@
 <template>
-  <div v-hammer:swipe.right="setToggleTrue">
+  <div
+  v-hammer:swipe.horizontal="setToggle">
 
     <VerticalNavbar
       v-bind:class="{ 'active mobile-view hide': isMobile, '': !isMobile}"
@@ -63,7 +64,7 @@ import Portfolio from './content-block/portfolio.vue';
 import Contact from './content-block/contact.vue';
 import Footer from './content-block/footer.vue';
 import About from './content-block/about.vue';
-import FollowOverlay from './follow-overlay.vue';
+// import FollowOverlay from './follow-overlay.vue';
 
 export default {
   name: 'Home',
@@ -75,8 +76,8 @@ export default {
     Portfolio,
     Contact,
     Footer,
-    FollowOverlay,
-    // FollowOverlay: () => import('./follow-overlay.vue'),
+    // FollowOverlay,
+    FollowOverlay: () => import('./follow-overlay.vue'),
     ProjectDetail: () => import('./project-detail.vue'),
     Notification: () => import('@/components/notification.vue'),
   },
@@ -124,8 +125,11 @@ export default {
       this.showNoti = true;
       this.notiMessage = str;
     },
-    setToggleTrue() {
-      store.commit('setToggle', true);
+    setToggle(e) {
+      const swipe = e.type;
+      swipe === 'swiperight'
+        ? store.commit('setToggle', true)
+        : store.commit('setToggle', false);
     },
   },
   mounted() {

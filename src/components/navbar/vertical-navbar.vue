@@ -1,6 +1,5 @@
 <template>
   <div
-  v-hammer:swipe.left="toggleMenu"
   v-bind:class="{ 'active': isActive, 'show': (isToggle && isMobile)}"
   class="vertical-navbar">
     <img
@@ -107,7 +106,6 @@ export default {
     });
   },
   watch: {
-  /* eslint no-unused-expressions: [2, { allowTernary: true }] */
     isShowFollow() {
       !this.isShowFollow ? this.detectBlock() : this.current = 4;
     },
