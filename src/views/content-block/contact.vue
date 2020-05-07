@@ -39,16 +39,23 @@
         <div class="row">
           <div class="col-md-6">
             <div class="email-block__item">
-              <label class="title">Name</label>
-              <input type="text" name="name" class="text-input" v-model="directMessage.name" />
+              <label class="title">Name*</label>
+              <input
+              type="text"
+              name="name"
+              class="text-input"
+              :class="{'error': (formErr.length > 0 && checkErr('Name'))}"
+              v-model="directMessage.name"
+              />
             </div>
             <div class="email-block__item">
-              <label class="title">Email</label>
+              <label class="title">Email*</label>
               <input
-                type="text"
-                name="email"
-                class="text-input email"
-                v-model="directMessage.email"
+              type="text"
+              name="email"
+              class="text-input email"
+              :class="{'error': (formErr.length > 0 && checkErr('address'))}"
+              v-model="directMessage.email"
               />
             </div>
             <div class="email-block__item">
@@ -57,27 +64,30 @@
               type="text"
               name="subject"
               class="text-input"
-              v-model="directMessage.subject" />
+              v-model="directMessage.subject"
+              />
             </div>
           </div>
           <div class="col-md-6 lp5">
             <div class="email-block__item">
-              <label class="title">Message</label>
+              <label class="title">Message*</label>
               <textarea
               name="message"
               class="text-area"
-              v-model="directMessage.content"></textarea>
+              :class="{'error': (formErr.length > 0 && checkErr('content'))}"
+              v-model="directMessage.content"
+              ></textarea>
             </div>
           </div>
 
           <transition name="slide-down" mode="in-out">
           <div
           class="email-noti"
-          :class="{'error' :isError}"
-          v-if="emailNoti != ''">
-            {{emailNoti}}
-            <span class="material-icons" @click="clearEmailNoti">
-              cancel
+          v-if="formErr.length > 0">
+            <span
+            v-for="(err, index) in formErr"
+            :key="index">
+              {{err}}
             </span>
           </div>
           </transition>
@@ -99,7 +109,7 @@
                 name="submit"
                 class="btn btn-submit"
                 :class="{'error' :isError}"
-                @click="sendMessage"
+                @click="formValidate"
               />
             </div>
           </div>
@@ -118,7 +128,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import emailjs from 'emailjs-com';
 import store from '@/store';
 import constant from '@/constant';
 import UpDownBtn from '@/components/up-down.vue';
@@ -132,7 +142,7 @@ export default {
     return {
       showEmail: false,
       isError: false,
-      emailNoti: '',
+      formErr: [],
       directMessage: {
         name: '',
         email: '',
@@ -150,41 +160,73 @@ export default {
     },
   },
   methods: {
+    formValidate(e) {
+      if (this.directMessage.name && this.directMessage.email && this.directMessage.content) {
+        this.sendMessage();
+        this.isError = false;
+      }
+
+      this.isError = true;
+      this.formErr = [];
+
+      if (!this.directMessage.name) {
+        this.formErr.push('Name required!');
+      }
+      if (!this.directMessage.email) {
+        this.formErr.push('Email address required!');
+      } else if (!this.validEmail(this.directMessage.email)) {
+        this.formErr.push('Valid email address required.');
+      }
+      if (!this.directMessage.email) {
+        this.formErr.push('Email content required!');
+      }
+      e.preventDefault();
+    },
+    validEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
     sendMessage() {
+      const serviceId = 'gmail';
+      const templateId = 'template_6tzrBLEy';
+      const userId = 'user_iN8gsQFj7PKzAV3d6fdFK';
+
       const data = {
-        service_id: 'gmail',
-        template_id: 'template_6tzrBLEy',
-        user_id: 'user_iN8gsQFj7PKzAV3d6fdFK',
         template_params: {
-          // from_name: this.directMessage.name,
-          // from_email: this.directMessage.email,
-          // subject: this.directMessage.subject,
-          message_html: this.directMessage.content,
+          from_name: this.directMessage.name,
+          from_email: this.directMessage.email,
+          subject: this.directMessage.subject,
+          message: this.directMessage.content,
         },
       };
 
-      axios
-        .post('https://api.emailjs.com/api/v1.0/email/send', {
-          data: JSON.parse(JSON.stringify(data)),
-          contentType: 'application/json',
-        })
+      emailjs.send(serviceId, templateId, data, userId)
         .then(() => {
-          this.emailNoti = 'Send mail successfully! We will respond asap!';
+          this.$emit('sendNoti', '<h4>Thank you!</h4><p>Your message has been successfully sent. </p><p>I will contact you very soon!</p>');
+          this.clearEmail();
         })
         .catch(() => {
-          this.emailNoti = 'Some errors occured, please try again!';
-          this.isError = true;
+          this.$emit('sendNoti', '<h4>Oops! Some errors occured.</h4><p>Please try again later!</p>');
         });
     },
     showEmailPanel() {
       this.showEmail = !this.showEmail;
     },
+    clearEmail() {
+      this.directMessage.content = '';
+      this.directMessage.subject = '';
+      this.directMessage.name = '';
+      this.directMessage.email = '';
+    },
     clearTextbox() {
       this.directMessage.content = '';
     },
-    clearEmailNoti() {
-      this.emailNoti = '';
-      this.isError = false;
+    checkErr(str) {
+      const index = this.formErr.findIndex((item) => item.includes(str));
+      if (index > -1) {
+        return true;
+      }
+      return false;
     },
   },
 };

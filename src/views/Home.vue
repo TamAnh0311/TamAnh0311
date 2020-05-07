@@ -1,6 +1,5 @@
 <template>
-  <div
-  v-hammer:swipe.horizontal="setToggle">
+  <div v-hammer:swipe.horizontal="setToggle">
 
     <VerticalNavbar
       v-bind:class="{ 'active mobile-view hide': isMobile, '': !isMobile}"
@@ -19,11 +18,14 @@
 
       <About />
 
+      <Timeline />
+
       <Portfolio
       @openMessage="openNotiBox"
       @openDetail="openDetailPanel"/>
 
-      <Contact />
+      <Contact
+      @sendNoti="openNotiBox"/>
 
       <Footer />
 
@@ -49,22 +51,30 @@
       </transition>
 
     </div>
+    <FixedFooter v-if="isMobile" />
   </div>
 </template>
 
 <script>
 import store from '@/store';
 import constant from '@/constant';
+import { VueHammer } from 'vue2-hammer';
 
 import VerticalNavbar from '@/components/navbar/vertical-navbar.vue';
 import HorizontalNavbar from '@/components/navbar/horizontal-navbar.vue';
+import FixedFooter from '@/components/fixed-footer.vue';
 
 import HomeBlock from './content-block/home-block.vue';
+import About from './content-block/about.vue';
+import Timeline from './content-block/timeline.vue';
 import Portfolio from './content-block/portfolio.vue';
 import Contact from './content-block/contact.vue';
 import Footer from './content-block/footer.vue';
-import About from './content-block/about.vue';
-// import FollowOverlay from './follow-overlay.vue';
+
+VueHammer.config.swipe = {
+  direction: 'horizontal',
+};
+
 
 export default {
   name: 'Home',
@@ -73,10 +83,11 @@ export default {
     HorizontalNavbar,
     HomeBlock,
     About,
+    Timeline,
     Portfolio,
     Contact,
     Footer,
-    // FollowOverlay,
+    FixedFooter,
     FollowOverlay: () => import('./follow-overlay.vue'),
     ProjectDetail: () => import('./project-detail.vue'),
     Notification: () => import('@/components/notification.vue'),

@@ -75,6 +75,11 @@ $plum: #b50572;
     margin: 0;
   }
 }
+@mixin transition-primary {
+  -webkit-transition: .3s all ease-in-out;
+  -moz-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
 
 //fonts
 @import url('https://fonts.googleapis.com/css?family=Gotu&display=swap');

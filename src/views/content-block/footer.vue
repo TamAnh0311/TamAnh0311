@@ -1,6 +1,8 @@
 <template>
-  <footer id="footer" class="footer vertical-align row">
-    <div class="col-lg-9 col-xl-9">
+  <footer
+  id="footer"
+  class="footer vertical-align row">
+    <div class="col-lg-9 col-xl-9 footer-content">
       <p>© 2020 Tamanh Vu. All rights reserved.</p>
     </div>
     <div class="col-lg-3 col-xl-3 footer-btn">
@@ -21,10 +23,5 @@ export default {
     UpDownBtn,
     Follow: () => import('@/components/follow.vue'),
   },
-
 };
 </script>
-
-<style>
-
-</style>

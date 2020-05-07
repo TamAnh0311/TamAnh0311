@@ -5,6 +5,7 @@
 @import './pagination';
 @import './up-down-btn';
 @import './_notification';
+@import './view-block';
 
 @import './navbar/horizontal-navbar';
 @import './navbar/vertical-navbar';
@@ -18,6 +19,9 @@
 @import './home-component/portfolio';
 @import './home-component/home';
 @import './home-component/about';
+@import './home-component/timeline';
+@import './home-component/footer';
+@import './home-component/fixed-footer';
 
 body {
   margin: 0;
@@ -28,7 +32,6 @@ body {
   -webkit-background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;

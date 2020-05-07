@@ -1,25 +1,6 @@
 #content-container {
   margin-left: 60px;
   transition: all 0.5s ease-in-out;
-  .footer {
-    margin: 20px 20px 0px 20px;
-    padding: 10px 50px 10px 50px;
-    display: flex;
-    justify-content: space-between;
-    @include dark-bg;
-    div {
-      padding: 0;
-      p {
-        text-align: left;
-        margin: 0;
-      }
-    }
-    .footer-btn {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-  }
   &.mobile-view {
     margin: 0!important;
   }

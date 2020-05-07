@@ -47,11 +47,8 @@ export default {
     scrollTop() {
       const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        this.$scrollTo('#app', 400);
       }
-    },
-    goIntoView(item) {
-      document.getElementById(item).scrollIntoView({ behavior: 'smooth' });
     },
     toggleMenu() {
       store.commit('isToggle');

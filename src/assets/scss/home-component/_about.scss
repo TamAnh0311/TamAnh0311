@@ -1,7 +1,5 @@
 #about {
   height: auto;
-  margin: 20px;
-  @include dark-bg;
   .about-content {
     .personal-statement {
       p {
@@ -83,8 +81,6 @@
 
 @media only screen and (max-width: 414px) {
   #about {
-    @include mobile-margin;
-    @include dark-bg-mobile;
     .about-content {
       .personal-statement {
         p {

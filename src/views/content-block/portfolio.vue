@@ -5,7 +5,7 @@
         <div class="col-md-4 col-lg-4 col-xl-4 title-portfolio">
           <h2 class="title">My projects</h2>
           <UpDownBtn
-          :upBlock="'about'"
+          :upBlock="'timeline'"
           :downBlock="'contact'" />
         </div>
         <div class="col-md-6 col-lg-6 col-xl-6 search-box">
@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-2 col-lg-2 col-xl-2 btn-pc-view">
           <UpDownBtn
-          :upBlock="'about'"
+          :upBlock="'timeline'"
           :downBlock="'contact'" />
         </div>
       </div>
@@ -174,11 +174,11 @@ export default {
     },
 
     cloneProject(project) {
-      const noti = `Copied ${project.name} clone link to the clipboard.\n Use git command to clone project`;
+      const noti = `<p>Copied ${project.name} clone link to the clipboard.</p> <p>Use git command to clone project</p>`;
       const url = project.clone_url;
       navigator.clipboard.writeText(url)
         .then(() => this.$emit('openMessage', noti))
-        .catch((e) => this.$emit('openMessage', e.toString()));
+        .catch((e) => this.$emit('openMessage', `<p>${e.toString()}</p>`));
       const el = document.createElement('textarea');
       el.value = url;
       document.body.appendChild(el);

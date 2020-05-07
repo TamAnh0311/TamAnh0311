@@ -77,6 +77,10 @@
         -webkit-transition: all 200ms ease-in;
         -o-transition: all 200ms ease-in;
         -moz-transition: all 200ms ease-in;
+        transition: all 200ms ease-in;
+        &.error {
+          border-color: red;
+        }
       }
       textarea {
         color: white;
@@ -108,6 +112,10 @@
         -webkit-transition: all 200ms ease-in;
         -o-transition: all 200ms ease-in;
         -moz-transition: all 200ms ease-in;
+        transition: all 200ms ease-in;
+        &.error {
+          border-color: red;
+        }
       }
     }
   }
@@ -118,15 +126,16 @@
     margin: 30px 10px 30px 10px;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    color: $light-green;
+    flex-direction: column;
+    color: red;
     transition: all .3s ease-in-out;
+    span {
+      padding-right: 20px;
+      text-align: right;
+    }
     .material-icons {
       margin-left: 10px;
       cursor: pointer;
-    }
-    &.error {
-      color: red;
     }
   }
   .btn-block {

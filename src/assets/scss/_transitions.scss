@@ -44,6 +44,16 @@
   opacity: 0;
 }
 
+.slide-up-enter-active ,
+.slide-up-leave-active {
+  transition: all .3s ease-in-out;
+}
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
 .slide-left-leave-active,
 .slide-left-enter-active {
   transition: .5s;

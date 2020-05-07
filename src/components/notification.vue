@@ -14,8 +14,7 @@
           cancel
         </span>
       </div>
-      <div class="notification-content">
-        <h5>{{message}}</h5>
+      <div class="notification-content" id="content-noti">
       </div>
       <div class="notification-btn">
         <input
@@ -36,16 +35,16 @@ export default {
   props: {
     message: {
       type: String,
-      default: 'This is a notification',
+      default: '<p>This is a notification</p>',
     },
   },
   methods: {
-    consol() {
-      console.log('aasad');
-    },
     closeNoti() {
       this.$emit('closeNoti');
     },
+  },
+  mounted() {
+    document.getElementById('content-noti').innerHTML = this.message;
   },
 };
 </script>

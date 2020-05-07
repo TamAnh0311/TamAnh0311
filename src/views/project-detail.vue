@@ -4,7 +4,12 @@
   v-hammer:swipe.right="closePanel"
   >
     <div class="close-panel">
-      <span class="material-icons" @click="closePanel">chevron_right</span>
+      <span
+      id="project-detail-close-chevron"
+      class="material-icons"
+      @click="closePanel">
+        chevron_right
+      </span>
     </div>
 
     <div class="project-detail-content">

@@ -11,6 +11,11 @@ export default {
       icon: 'account_box',
     },
     {
+      name: 'Timeline',
+      part: 'timeline',
+      icon: 'timeline',
+    },
+    {
       name: 'Portfolio',
       part: 'portfolio',
       icon: 'view_quilt',
@@ -80,6 +85,33 @@ export default {
       href: 'https://linkedin.com/in/tâm-anh-vũ-41b862168',
       icon: 'assignment_ind',
       content: 'linkedin.com/in/tâm-anh-vũ-41b862168',
+    },
+  ],
+  timeline: [
+    {
+      name: 'Framgia Open Education',
+      date: new Date(2018, 5),
+      position: 'Rails Developer Internship',
+    },
+    {
+      name: 'OC Studio',
+      date: new Date(2018, 8),
+      position: 'Javasript Game Developer Internship',
+    },
+    {
+      name: 'NCC Sofware',
+      date: new Date(2019, 5),
+      position: 'FrontEnd Angular Developer',
+    },
+    {
+      name: 'Beeketing',
+      date: new Date(2019, 8),
+      position: 'FrontEnd VueJS Developer',
+    },
+    {
+      name: 'Beeketing',
+      date: new Date(2019, 8),
+      position: 'FrontEnd VueJS Developer',
     },
   ],
 };

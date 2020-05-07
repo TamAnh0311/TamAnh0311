@@ -1,12 +1,10 @@
 <template>
   <div id="about">
-    <div class="about-content page-padding">
-      <div class="header">
-        <h2 class="title">About me</h2>
-        <UpDownBtn
-          :upBlock="'home'"
-          :downBlock="'portfolio'" />
-      </div>
+    <ViewBlock
+    class="about-content"
+    :title="'About me'"
+    :upBlock="'home'"
+    :downBlock="'timeline'">
       <div class="personal-statement row">
         <div class="col-md-8 col-lg-8 col-xl-8">
           <!-- eslint-disable max-len -->
@@ -67,19 +65,19 @@
       @click="showSkillSetPanel">
         <p>Tap here to see my skill set</p>
       </div>
-    </div>
+    </ViewBlock>
   </div>
 </template>
 
 <script>
 import store from '@/store';
 import constant from '@/constant';
-import UpDownBtn from '@/components/up-down.vue';
+import ViewBlock from '@/components/view-block.vue';
 
 export default {
   name: 'About',
   components: {
-    UpDownBtn,
+    ViewBlock,
   },
   data() {
     return {

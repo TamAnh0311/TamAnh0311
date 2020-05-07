@@ -24,7 +24,7 @@
       </li>
       <li
       class="vertical-align"
-      v-bind:class="{ 'pos-current': currentPos === 4}"
+      v-bind:class="{ 'pos-current': currentPos === 5}"
       @click="openFollow">
         <span class="material-icons">favorite</span>
         <span class="item-name">Follow</span>
@@ -90,13 +90,20 @@ export default {
     detectBlock() {
       const offset = (this.isMobile ? (window.pageYOffset + 130) : (window.pageYOffset + 70));
       const about = document.getElementById('about').offsetTop;
+      const timeline = document.getElementById('timeline').offsetTop;
       const portfolio = document.getElementById('portfolio').offsetTop;
       const contact = document.getElementById('contact').offsetTop;
 
       if (offset < about) this.current = 0;
       if (offset >= about) this.current = 1;
-      if (offset >= portfolio) this.current = 2;
-      if (offset >= contact) this.current = 3;
+      if (offset >= timeline) this.current = 2;
+      if (offset >= portfolio) this.current = 3;
+      if (offset >= contact) this.current = 4;
+    },
+    setToggle() {
+      if (this.isMobile) {
+        store.commit('setToggle', false);
+      }
     },
   },
 
@@ -107,7 +114,7 @@ export default {
   },
   watch: {
     isShowFollow() {
-      !this.isShowFollow ? this.detectBlock() : this.current = 4;
+      !this.isShowFollow ? this.detectBlock() : this.current = 5;
     },
   },
 };
