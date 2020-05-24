@@ -11,11 +11,6 @@ export default {
       icon: 'account_box',
     },
     {
-      name: 'Timeline',
-      part: 'timeline',
-      icon: 'timeline',
-    },
-    {
       name: 'Portfolio',
       part: 'portfolio',
       icon: 'view_quilt',
@@ -102,11 +97,6 @@ export default {
       name: 'NCC Sofware',
       date: new Date(2019, 5),
       position: 'FrontEnd Angular Developer',
-    },
-    {
-      name: 'Beeketing',
-      date: new Date(2019, 8),
-      position: 'FrontEnd VueJS Developer',
     },
     {
       name: 'Beeketing',

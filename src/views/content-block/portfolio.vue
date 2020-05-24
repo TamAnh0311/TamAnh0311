@@ -5,7 +5,7 @@
         <div class="col-md-4 col-lg-4 col-xl-4 title-portfolio">
           <h2 class="title">My projects</h2>
           <UpDownBtn
-          :upBlock="'timeline'"
+          :upBlock="'about'"
           :downBlock="'contact'" />
         </div>
         <div class="col-md-6 col-lg-6 col-xl-6 search-box">

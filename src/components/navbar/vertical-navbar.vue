@@ -90,15 +90,13 @@ export default {
     detectBlock() {
       const offset = (this.isMobile ? (window.pageYOffset + 130) : (window.pageYOffset + 70));
       const about = document.getElementById('about').offsetTop;
-      const timeline = document.getElementById('timeline').offsetTop;
       const portfolio = document.getElementById('portfolio').offsetTop;
       const contact = document.getElementById('contact').offsetTop;
 
       if (offset < about) this.current = 0;
       if (offset >= about) this.current = 1;
-      if (offset >= timeline) this.current = 2;
-      if (offset >= portfolio) this.current = 3;
-      if (offset >= contact) this.current = 4;
+      if (offset >= portfolio) this.current = 2;
+      if (offset >= contact) this.current = 3;
     },
     setToggle() {
       if (this.isMobile) {

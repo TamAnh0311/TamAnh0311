@@ -18,8 +18,6 @@
 
       <About />
 
-      <Timeline />
-
       <Portfolio
       @openMessage="openNotiBox"
       @openDetail="openDetailPanel"/>
@@ -66,7 +64,6 @@ import FixedFooter from '@/components/fixed-footer.vue';
 
 import HomeBlock from './content-block/home-block.vue';
 import About from './content-block/about.vue';
-import Timeline from './content-block/timeline.vue';
 import Portfolio from './content-block/portfolio.vue';
 import Contact from './content-block/contact.vue';
 import Footer from './content-block/footer.vue';
@@ -83,7 +80,6 @@ export default {
     HorizontalNavbar,
     HomeBlock,
     About,
-    Timeline,
     Portfolio,
     Contact,
     Footer,

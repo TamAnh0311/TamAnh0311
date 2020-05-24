@@ -4,7 +4,7 @@
     class="about-content"
     :title="'About me'"
     :upBlock="'home'"
-    :downBlock="'timeline'">
+    :downBlock="'portfolio'">
       <div class="personal-statement row">
         <div class="col-md-8 col-lg-8 col-xl-8">
           <!-- eslint-disable max-len -->
@@ -32,38 +32,63 @@
           class="btn btn-download"
           >Download My CV</a>
       </div>
-      <div class="skill-set__header">
-        <h3>My skill set:</h3>
-        <span
-        class="material-icons"
-        :class="{'hide-panel' : showSkillSet}"
-        @click="showSkillSetPanel"
-        v-if="isMobile">
-          arrow_drop_down
-        </span>
-      </div>
-      <transition name="slide-down" mode="in-out">
-      <div class="skill-set" v-if="(showSkillSet || !isMobile)">
-        <div
-        v-for="(sector, index) in skillSet"
-        :key="index"
-        class="skill-set__item">
-          <h4>{{ sector.name }}</h4>
-          <div class="item-details">
-            <p
-            v-for="(item, index) in sector.item"
-            :key="index">
-              {{ item }}
-            </p>
+      <div class="about-detail-block">
+        <div class="block__header">
+          <h3>My skill set:</h3>
+          <span
+          class="material-icons"
+          :class="{'hide-panel' : showSkillSet}"
+          @click="showSkillSetPanel"
+          v-if="isMobile">
+            arrow_drop_down
+          </span>
+        </div>
+        <transition name="slide-down" mode="in-out">
+        <div class="skill-set" v-if="(showSkillSet || !isMobile)">
+          <div
+          v-for="(sector, index) in skillSet"
+          :key="index"
+          class="skill-set__item">
+            <h4>{{ sector.name }}</h4>
+            <div class="item-details">
+              <p
+              v-for="(item, index) in sector.item"
+              :key="index">
+                {{ item }}
+              </p>
+            </div>
           </div>
         </div>
+        </transition>
+        <div
+        class="bottom-card vertical-align"
+        v-if="(!showSkillSet && isMobile)"
+        @click="showSkillSetPanel">
+          <p>Tap here to see my skill set</p>
+        </div>
       </div>
-      </transition>
-      <div
-      class="bottom-card vertical-align"
-      v-if="(!showSkillSet && isMobile)"
-      @click="showSkillSetPanel">
-        <p>Tap here to see my skill set</p>
+      <div class="about-detail-block">
+        <div class="block__header">
+          <h3>My timeline</h3>
+          <span
+          class="material-icons"
+          :class="{'hide-panel' : showSkillSet}"
+          @click="showTimelinePanel"
+          v-if="isMobile">
+            arrow_drop_down
+          </span>
+        </div>
+        <transition name="slide-down" mode="in-out">
+          <div v-if="(showTimeline || !isMobile)">
+            <Timeline />
+          </div>
+        </transition>
+        <div
+        class="bottom-card vertical-align"
+        v-if="(!showTimeline && isMobile)"
+        @click="showTimelinePanel">
+          <p>Tap here to see my timeline</p>
+        </div>
       </div>
     </ViewBlock>
   </div>
@@ -73,15 +98,18 @@
 import store from '@/store';
 import constant from '@/constant';
 import ViewBlock from '@/components/view-block.vue';
+import Timeline from '@/components/timeline.vue';
 
 export default {
   name: 'About',
   components: {
     ViewBlock,
+    Timeline,
   },
   data() {
     return {
       showSkillSet: false,
+      showTimeline: false,
     };
   },
   computed: {
@@ -95,6 +123,9 @@ export default {
   methods: {
     showSkillSetPanel() {
       this.showSkillSet = !this.showSkillSet;
+    },
+    showTimelinePanel() {
+      this.showTimeline = !this.showTimeline;
     },
   },
 };

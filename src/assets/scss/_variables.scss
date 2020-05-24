@@ -13,6 +13,9 @@ $linkedin-blue: #3daccf;
 $plum: #b50572;
 
 //mixin
+@mixin darker-black-bg {
+  background-color: rgba($color: $light-black, $alpha: 0.6);
+}
 @mixin dark-bg {
   background-color: rgba($color: black, $alpha: 0.7);
 }
@@ -79,6 +82,11 @@ $plum: #b50572;
   -webkit-transition: .3s all ease-in-out;
   -moz-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
+}
+@mixin transition-secondary {
+  -webkit-transition: 5s all ease-in-out;
+  -moz-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
 }
 
 //fonts
