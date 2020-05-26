@@ -131,12 +131,11 @@
 import emailjs from 'emailjs-com';
 import store from '@/store';
 import constant from '@/constant';
-import UpDownBtn from '@/components/up-down.vue';
 
 export default {
   name: 'Contact',
   components: {
-    UpDownBtn,
+    UpDownBtn: () => import('@/components/up-down.vue'),
   },
   data() {
     return {
@@ -161,7 +160,10 @@ export default {
   },
   methods: {
     formValidate(e) {
-      if (this.directMessage.name && this.directMessage.email && this.directMessage.content) {
+      if (this.directMessage.name
+       && this.directMessage.email
+       && this.validEmail(this.directMessage.email)
+       && this.directMessage.content) {
         this.sendMessage();
         this.isError = false;
       }

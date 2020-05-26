@@ -15,12 +15,10 @@
 </template>
 
 <script>
-import UpDownBtn from '@/components/up-down.vue';
-
 export default {
   name: 'Footer',
   components: {
-    UpDownBtn,
+    UpDownBtn: () => import('@/components/up-down.vue'),
     Follow: () => import('@/components/follow.vue'),
   },
 };
