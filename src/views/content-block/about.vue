@@ -97,14 +97,12 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
-import ViewBlock from '@/components/view-block.vue';
-import Timeline from '@/components/timeline.vue';
 
 export default {
   name: 'About',
   components: {
-    ViewBlock,
-    Timeline,
+    ViewBlock: () => import('@/components/view-block.vue'),
+    Timeline: () => import('@/components/timeline.vue'),
   },
   data() {
     return {

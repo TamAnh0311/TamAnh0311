@@ -123,13 +123,12 @@ import moment from 'moment';
 import store from '@/store';
 import axios from 'axios';
 import Pagination from '@/components/pagination.vue';
-import UpDownBtn from '@/components/up-down.vue';
 
 export default {
   name: 'Portfolio',
   components: {
     Pagination,
-    UpDownBtn,
+    UpDownBtn: () => import('@/components/up-down.vue'),
   },
   data() {
     return {

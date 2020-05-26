@@ -7,12 +7,11 @@
 </template>
 
 <script>
-import Follow from '@/components/follow.vue';
 
 export default {
   name: 'FollowOverlay',
   components: {
-    Follow,
+    Follow: () => import('@/components/follow.vue'),
   },
   mounted() {
     document.documentElement.style.overflow = 'hidden';
