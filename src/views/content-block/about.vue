@@ -72,7 +72,7 @@
           <h3>My timeline</h3>
           <span
           class="material-icons"
-          :class="{'hide-panel' : showSkillSet}"
+          :class="{'hide-panel' : showTimeline}"
           @click="showTimelinePanel"
           v-if="isMobile">
             arrow_drop_down
