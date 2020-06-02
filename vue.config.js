@@ -21,6 +21,7 @@ module.exports = {
         pngquant: {
           quality: '95-100'
         },
+        jpegtran: { progressive: true },
         disable: process.env.NODE_ENV !== 'production',
       })
     ]
