@@ -12,9 +12,11 @@
         <a :href="item.href"><i :class="'fa ' + item.icon"></i></a>
       </div>
       <div class="social-item">
-        <UpDownBtn
-        :isEnd="true"
-        :upBlock="'home'"/>
+        <span
+        class="material-icons"
+        :class="{'isScroll': isScroll}"
+        @click="goTo"
+        >keyboard_arrow_down</span>
       </div>
     </div>
 
@@ -39,17 +41,14 @@
 <script>
 import store from '@/store';
 import constant from '@/constant';
-import UpDownBtn from '@/components/up-down.vue';
 
 export default {
   name: 'fixed-footer',
-  components: {
-    UpDownBtn,
-  },
   data() {
     return {
       isContact: false,
       isFooter: Boolean,
+      isScroll: false,
     };
   },
   computed: {
@@ -70,9 +69,11 @@ export default {
       const percentage = Math.round((offset / document.body.scrollHeight) * 100);
       if (fillingLine) fillingLine.style.width = `${percentage}%`;
     },
-  },
-  created() {
-    window.addEventListener('scroll', () => {
+    goTo() {
+      const block = this.isScroll ? 'home' : 'footer';
+      this.$scrollTo(`#${block}`);
+    },
+    blockDetect() {
       const offset = window.pageYOffset + window.screen.height;
       const contact = document.getElementById('contact').offsetTop;
       const footer = document.getElementById('footer').offsetTop;
@@ -80,6 +81,20 @@ export default {
       offset >= contact ? this.isContact = true : this.isContact = false;
       offset >= footer ? this.isFooter = true : this.isFooter = false;
       this.fillingLine();
+    },
+    scrollDetect() {
+      const offsetTop = window.pageYOffset;
+      if (offsetTop > 0) {
+        this.isScroll = true;
+      } else {
+        this.isScroll = false;
+      }
+    },
+  },
+  created() {
+    window.addEventListener('scroll', () => {
+      this.blockDetect();
+      this.scrollDetect();
     }, false);
   },
   mounted() {

@@ -56,7 +56,7 @@
           table {
             th {
               text-align: left;
-              font-size: calc(2px + 1vw);
+              font-size: 0.75rem;
             }
           }
           .project-btn {
@@ -111,6 +111,25 @@
           display: none;
         }
       }
+      .projects {
+        .projects__item {
+          .box-img {
+            margin: 20px 20px;
+          }
+          .project-infor {
+            position: relative;
+            .project-btn {
+              position: absolute;
+              right: 0;
+              bottom: -30px;
+              .btn-project {
+                background-color: $light-green;
+                color: $light-black;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -120,20 +139,13 @@
   .portfolio-content {
     .projects {
       .projects__item {
-        margin: 10px 0px 10px 0px;
+        margin: 10px 0px;
         flex: 1 0 100%;
         justify-content: flex-start;
         .box-img {
           height: 70px;
           width: 110px;
           margin: 10px;
-        }
-        .project-infor {
-          table {
-            th {
-              font-size: calc(10px + 1vw);
-            }
-          }
         }
       }
     }
@@ -145,11 +157,5 @@
   #portfolio {
     @include mobile-margin;
     @include dark-bg-mobile;
-    .portfolio-content {
-      .projects {
-        .projects__item {
-        }
-      }
-    }
   }
 }
