@@ -9,10 +9,12 @@
   .social-block {
     display: flex;
     justify-content: space-evenly;
+    transition: all .3s ease-in-out;
     .social-item {
       flex-basis: 25%;
       display: flex;
       justify-content: center;
+      padding: 7px;
       a {
         font-size: 1.5rem;
         display: flex;
@@ -20,8 +22,14 @@
         align-self: center;
         color: $light-green;
       }
-      .up-down-btn {
+      .material-icons {
         color: $light-green;
+        font-size: 1.5rem;
+        transform: scale(1.5);
+        transition: all .3s ease-in-out;
+        &.isScroll {
+          transform: rotate(180deg) scale(1.5);
+        }
       }
     }
   }

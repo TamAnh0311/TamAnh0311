@@ -54,7 +54,7 @@
                 <th>{{item.language}}</th>
               </tr>
               <tr v-if="!isMobile">
-                <th>Forks Count:</th>
+                <th>Forks:</th>
                 <th>{{item.forks_count}}</th>
               </tr>
               <tr v-if="!isMobile">
@@ -62,7 +62,7 @@
                 <th>{{item.owner.login}}</th>
               </tr>
               <tr v-if="!isMobile">
-                <th>Created at:</th>
+                <th>Publish:</th>
                 <th>{{item.created_at | formatDate}}</th>
               </tr>
             </table>

@@ -7,7 +7,7 @@
 @import './_notification';
 @import './view-block';
 @import './timeline';
-
+@import './fixed-footer';
 
 @import './navbar/horizontal-navbar';
 @import './navbar/vertical-navbar';
@@ -22,7 +22,6 @@
 @import './home-component/home';
 @import './home-component/about';
 @import './home-component/footer';
-@import './home-component/fixed-footer';
 
 body {
   margin: 0;
