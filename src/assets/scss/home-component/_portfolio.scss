@@ -75,7 +75,14 @@
           }
         }
         &:hover {
+          box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+          .box-img {
+            filter: brightness(0.4);
+          }
           .project-infor {
+            table {
+              filter: brightness(0.4);
+            }
             .project-btn {
               height: 30px;
               opacity: 1;
@@ -120,8 +127,11 @@
             position: relative;
             .project-btn {
               position: absolute;
-              right: 0;
-              bottom: -30px;
+              left:0;
+              right:50%;
+              top:0;
+              bottom:0;
+              margin:auto auto;
               .btn-project {
                 background-color: $light-green;
                 color: $light-black;
