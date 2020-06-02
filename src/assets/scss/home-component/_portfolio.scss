@@ -43,7 +43,7 @@
       margin: 30px 0px 30px 0px;
       .projects__item {
         margin: 10px;
-        flex: 1 0 48%;
+        flex: 1 0 47%;
         display: flex;
         justify-content: flex-start;
         @include card-grey;
@@ -90,6 +90,50 @@
     }
   }
 }
+@media only screen and (max-width: 1200px) {
+  #portfolio {
+    .portfolio-content {
+      .projects {
+        .projects__item {
+          .box-img {
+            margin: 10px 20px;
+          }
+          .project-infor {
+            position: relative;
+            .project-btn {
+              position: absolute;
+              right:50%;
+              bottom: -40px;
+              margin:auto auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 863px) {
+  #portfolio {
+    .portfolio-content {
+      .projects {
+        .projects__item {
+          .project-infor {
+            .project-btn {
+              right:10%;
+              top:0;
+              bottom:0;
+              .btn-project {
+                background-color: $light-green;
+                color: $light-black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 768px) {
   #portfolio {
@@ -111,6 +155,39 @@
           display: none;
         }
       }
+<<<<<<< Updated upstream
+=======
+      .projects {
+        .projects__item {
+          .box-img {
+            margin: 20px 20px;
+          }
+          .project-infor {
+            .project-btn {
+              left:0;
+              right:50%;
+              top:0;
+              bottom:0;
+              .btn-project {
+                background-color: $light-green;
+                color: $light-black;
+              }
+            }
+          }
+          &:hover {
+              box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+          .box-img {
+            filter: brightness(0.4);
+          }
+          .project-infor {
+              table {
+                filter: brightness(0.4);
+              }
+            }
+          }
+        }
+      }
+>>>>>>> Stashed changes
     }
   }
 }

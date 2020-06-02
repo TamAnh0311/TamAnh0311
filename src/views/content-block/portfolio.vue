@@ -73,7 +73,7 @@
                 value="Clone"
                 name="reset"
                 class="btn btn-project"
-                @click.stop="cloneProject(item)"
+                @click.stop.prevent="cloneProject(item)"
               />
             </div>
             <div>
@@ -82,7 +82,7 @@
                 value="Go to GitHub"
                 name="submit"
                 class="btn btn-project"
-                @click="toProject(item.html_url)"
+                @click.stop.prevent="toProject(item.html_url)"
               />
             </div>
           </div>
