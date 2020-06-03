@@ -57,6 +57,7 @@
 import store from '@/store';
 import constant from '@/constant';
 import { VueHammer } from 'vue2-hammer';
+import bg from '@/assets/images/backgrounds/page-background.jpg';
 
 VueHammer.config.swipe = {
   direction: 'horizontal',
@@ -132,6 +133,14 @@ export default {
           : store.commit('setToggle', false);
       }
     },
+    setBackgroundImage() {
+      const str = `url(${bg})`;
+      console.log(str);
+      document.body.style.backgroundImage = str;
+    },
+  },
+  created() {
+    this.setBackgroundImage();
   },
   mounted() {
     this.$nextTick(() => store.commit('checkLoading', false));

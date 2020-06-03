@@ -5,8 +5,8 @@
     :title="'About me'"
     :upBlock="'home'"
     :downBlock="'portfolio'">
-      <div class="personal-statement row">
-        <div class="col-md-8 col-lg-8 col-xl-8">
+      <div class="personal-statement">
+        <div class="personal-infor">
           <!-- eslint-disable max-len -->
           <p>
             I was late 2 years started at university but “better late than never”, I am trying my best and will do anything to reach the goal.
@@ -22,7 +22,7 @@
           </p>
           <!-- eslint-enable max-len -->
         </div>
-        <div class="col-md-4 col-lg-4 col-xl-4">
+        <div class="personal-img">
           <img class="img-fluid" width="250" height="250" src="@/assets/images/avatar2.jpg" />
         </div>
       </div>

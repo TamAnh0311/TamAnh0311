@@ -2,16 +2,29 @@
   height: auto;
   .about-content {
     .personal-statement {
-      p {
-        text-align: justify;
-        white-space: pre-wrap;
-        text-justify: inter-word;
-        &::first-letter {
-          padding-left: 10px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      div {
+        margin: 10px;
+      }
+      .personal-infor {
+        flex: 1 0 70%;
+        p {
+          text-align: justify;
+          white-space: pre-wrap;
+          text-justify: inter-word;
+          &::first-letter {
+            padding-left: 10px;
+          }
         }
       }
-      img {
-        border-radius: 5px;
+      .personal-img {
+        flex: 1 0 24%;
+        img {
+          border-radius: 5px;
+          @include transition-primary;
+        }
       }
     }
     .download-btn-block {
@@ -68,6 +81,22 @@
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  #about {
+    .about-content {
+      .personal-statement {
+        .personal-img {
+          img {
+            width: 350px;
+            height: 350px;
+            @include transition-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 768px) {
   #about {
     .about-content {
@@ -75,6 +104,22 @@
         .skill-set__item {
           min-width: 300px;
           margin: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #about {
+    .about-content {
+      .personal-statement {
+        .personal-img {
+          img {
+            width: 250px;
+            height: 250px;
+            @include transition-primary;
+          }
         }
       }
     }
