@@ -132,8 +132,12 @@ export default {
           : store.commit('setToggle', false);
       }
     },
+    setBackground() {
+      document.body.style.backgroundImage = 'url("/img/page-background.18b40743.jpg")';
+    },
   },
   mounted() {
+    this.setBackground();
     this.$nextTick(() => store.commit('checkLoading', false));
   },
   destroyed() {
